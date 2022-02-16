@@ -93,7 +93,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder"><%=p.getPname()%></h5>
                                     <!-- Product price-->
-                                    <%=p.getPrice()%>₫
+                                    <%=p.getPrice()%>00₫
                                 </div>
                             </div>
                             <!-- Product actions-->

@@ -65,10 +65,6 @@ public class Product {
         this.pcolor = pcolor;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" + "pid=" + pid + ", pname=" + pname + ", pdescription=" + pdescription + ", pimage=" + pimage + ", price=" + price + ", pcolor=" + pcolor + '}';
-    }
-    
+ 
     
 }
