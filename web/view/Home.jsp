@@ -4,6 +4,8 @@
     Author     : DELL
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.Category"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -21,6 +23,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <% 
             ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("product");
+            
         %>
     </head>
     <body>
@@ -35,16 +38,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thương hiệu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">Adidas</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Nike</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Uniqlo</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Jordan</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Pirates Sock</a></li>
+                                <c:forEach items="${category}" var="c">
+                                    <li><a class="dropdown-item" href="#!">${c.cname}</a></li>
+                                    <li><hr class="dropdown-divider" /></li> 
+                                </c:forEach>
+                                 
                             </ul>
+                            
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#!">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Log in</a></li>

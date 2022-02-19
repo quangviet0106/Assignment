@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.CategoryDBContext;
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 import model.Product;
 
 /**
@@ -32,6 +34,9 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        CategoryDBContext dbCategory = new CategoryDBContext();
+        ArrayList<Category> categorys = dbCategory.getCategory();
+        request.setAttribute("category", categorys);
         ProductDBContext dbProduct = new ProductDBContext();
         ArrayList<Product> products = dbProduct.getProducts();
         request.setAttribute("product", products);

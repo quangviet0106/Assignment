@@ -6,7 +6,8 @@
             <file>file:/C:/Users/DELL/Documents/NetBeansProjects/SE1616_Assignment/src/java/dal/ProductDBContext.java</file>
             <file>file:/C:/Users/DELL/Documents/NetBeansProjects/SE1616_Assignment/web/view/Home.jsp</file>
             <file>file:/C:/Users/DELL/Documents/NetBeansProjects/SE1616_Assignment/src/java/controller/HomeController.java</file>
-            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/SE1616_Assignment/src/java/model/Product.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/SE1616_Assignment/src/java/model/Category.java</file>
+            <file>file:/C:/Users/DELL/Documents/NetBeansProjects/SE1616_Assignment/src/java/dal/CategoryDBContext.java</file>
         </group>
     </open-files>
 </project-private>
