@@ -16,6 +16,7 @@ public class Product {
     private String pimage;
     private double price;
     private String pcolor;
+    private Category cate;
 
     public int getPid() {
         return pid;
@@ -65,6 +66,14 @@ public class Product {
         this.pcolor = pcolor;
     }
 
+    public Category getCate() {
+        return cate;
+    }
+
+    public void setCate(Category cate) {
+        this.cate = cate;
+    }
+    
  
     
 }

@@ -4,9 +4,18 @@
         <servlet-name>HomeController</servlet-name>
         <servlet-class>controller.HomeController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetailsController</servlet-name>
+        <servlet-class>controller.DetailsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DetailsController</servlet-name>
+        <url-pattern>/details</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

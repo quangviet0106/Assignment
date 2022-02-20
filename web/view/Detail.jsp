@@ -1,12 +1,12 @@
 <%-- 
-    Document   : Home
-    Created on : Feb 11, 2022, 6:22:14 PM
+    Document   : Detail
+    Created on : Feb 20, 2022, 4:51:06 PM
     Author     : DELL
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.Category"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="model.Product"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,15 +14,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>The Socks</title>
-        <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/detail.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <% 
             ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("product");
+            ArrayList<Category> categorys = (ArrayList<Category>) request.getAttribute("category");
             
         %>
     </head>
@@ -38,13 +38,11 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thương hiệu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <c:forEach items="${category}" var="c">
-                                    <li><a class="dropdown-item ${tag==c.cid ? "active":""}" href="category?cid=${c.cid}">${c.cname}</a></li>
+                                <%for (Category c : categorys) {%>
+                                    <li><a class="dropdown-item" href="#"><%=c.getCname()%></a></li>
                                     <li><hr class="dropdown-divider" /></li> 
-                                </c:forEach>
-                                 
+                               <%}%>  
                             </ul>
-                            
                         </li>
                         <li class="nav-item"><a class="nav-link" href="#!">Log out</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Log in</a></li>
@@ -77,10 +75,38 @@
             </div>
         </header>
         <section class="py-5">
-         
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${detail.pimage}" alt="..." /></div>
+                    <div class="col-md-6">
+                        <h1 class="display-5 fw-bolder">${detail.pname}</h1>
+                        <div class="fs-5 mb-5">
+                            <span>${detail.price}</span><br>
+                            <span>Màu: ${detail.pcolor}</span><br>
+                            <span>Size: </span>
 
-}
+                        </div>
+                        <h6 class="fw-bolder">Mô tả:</h6>
+                        <p class="lead">${detail.pdescription}</p>
+                        <div class="d-flex">
+                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </button>
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                <i>Mua Ngay</i>
+                                
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-5 bg-light">
             <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4">Related products</h2>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <% for (Product p : products) {%>
                     <div class="col mb-5">
@@ -91,7 +117,7 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"><a href="details?pid=<%=p.getPid()%>" title="View Product"><%=p.getPname()%></a></h5>
+                                    <h5 class="fw-bolder"><a href="#" title="View Product"><%=p.getPname()%></a></h5>
                                     <!-- Product price-->
                                     <%=p.getPrice()%>00₫
                                 </div>
@@ -105,10 +131,8 @@
                     </div>
                     <%}%>
                 </div>
-                
         </section>
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
+                 <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>
                 <p>Phone: 0902234406</p>
@@ -125,5 +149,5 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
-    </body>
+    </body>     
 </html>
