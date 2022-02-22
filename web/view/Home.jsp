@@ -50,8 +50,8 @@
                         <li class="nav-item"><a class="nav-link" href="#!">Log in</a></li>
                     </ul>
                     <div class="search-container">
-                        <form action="/action_page.php">
-                          <input type="text" placeholder="Tìm kiếm.." name="search">
+                        <form action="search" method="POST">
+                            <input type="text" placeholder="Tìm kiếm.." name="search" value="${searchName}">
                           <button type="submit">Search</button>
                         </form>
                       </div>

@@ -17,6 +17,8 @@ public class Product {
     private double price;
     private String pcolor;
     private Category cate;
+    private int size;
+    private int quantity;
 
     public int getPid() {
         return pid;
@@ -73,7 +75,20 @@ public class Product {
     public void setCate(Category cate) {
         this.cate = cate;
     }
-    
- 
-    
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

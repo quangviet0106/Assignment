@@ -23,7 +23,7 @@
         <% 
             ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("product");
             ArrayList<Category> categorys = (ArrayList<Category>) request.getAttribute("category");
-            
+            Product p1 = (Product) request.getAttribute("detail");
         %>
     </head>
     <body>
@@ -82,9 +82,9 @@
                     <div class="col-md-6">
                         <h1 class="display-5 fw-bolder">${detail.pname}</h1>
                         <div class="fs-5 mb-5">
-                            <span>${detail.price}</span><br>
+                            <span>${detail.price}00₫</span><br>
                             <span>Màu: ${detail.pcolor}</span><br>
-                            <span>Size: </span>
+                            <span>Size: ${size.sname} </span>
 
                         </div>
                         <h6 class="fw-bolder">Mô tả:</h6>

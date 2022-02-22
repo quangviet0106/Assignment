@@ -7,7 +7,6 @@ package controller;
 
 import dal.CategoryDBContext;
 import dal.ProductDBContext;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -18,12 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import model.Category;
 import model.Product;
 
-
 /**
  *
  * @author DELL
  */
-public class DetailsController extends HttpServlet {
+public class SearchController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,19 +35,17 @@ public class DetailsController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String raw_id = request.getParameter("pid");
-        int id = Integer.parseInt(raw_id);
+        request.setCharacterEncoding("UTF-8");
+        String searchName = request.getParameter("search");
         ProductDBContext dbProduct = new ProductDBContext();
-        Product product = dbProduct.getProductByID(id);
-        request.setAttribute("detail",product);
+        ArrayList<Product> product = dbProduct.SearchProductByName(searchName);
+        request.setAttribute("product", product);
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);
-       
+        request.setAttribute("searchName", searchName);
+        request.getRequestDispatcher("view/Home.jsp").forward(request, response);
         
-        ArrayList<Product> products = dbProduct.getProducts();
-        request.setAttribute("product", products);
-        request.getRequestDispatcher("view/Detail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

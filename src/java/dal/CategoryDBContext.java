@@ -35,9 +35,4 @@ public class CategoryDBContext extends DBContext{
         }
         return categorys;
     }
-    public static void main(String[] args) {
-        CategoryDBContext c = new CategoryDBContext();
-        ArrayList<Category> c1 = c.getCategory();
-        System.out.println(c1);
-    }
 }
