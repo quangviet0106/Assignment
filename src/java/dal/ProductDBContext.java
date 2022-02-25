@@ -34,10 +34,11 @@ public class ProductDBContext extends DBContext {
             pr.setPimage(rs.getString(4));
             pr.setPrice(rs.getDouble(5));
             pr.setPcolor(rs.getString(6));
+            pr.setSize(rs.getInt(7));
+            pr.setQuantity(rs.getInt(8));
             Category c = new Category();
-            c.setCid(rs.getInt(7));
+            c.setCid(rs.getInt(9));
             pr.setCate(c);
-            pr.setQuantity(rs.getInt(9));
             products.add(pr);
         }
         } catch (SQLException ex) {
@@ -48,7 +49,7 @@ public class ProductDBContext extends DBContext {
     public ArrayList<Product> getProductByCategory(int cid){
         ArrayList<Product> products = new ArrayList<>();
         try {
-            String sql = "Select p.pid,p.pname,p.pdescription,p.pimage,p.price,p.pcolor,p.quantity from Product p INNER JOIN Category c ON p.cid = c.cid WHERE c.cid = ?";
+            String sql = "Select p.pid,p.pname,p.pdescription,p.pimage,p.price,p.pcolor,p.size,p.pquantity from Product p INNER JOIN Category c ON p.cid = c.cid WHERE c.cid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, cid);
             ResultSet rs = stm.executeQuery();
@@ -60,7 +61,8 @@ public class ProductDBContext extends DBContext {
             pr.setPimage(rs.getString("pimage"));
             pr.setPrice(rs.getDouble("price"));
             pr.setPcolor(rs.getString("pcolor"));
-            pr.setQuantity(rs.getInt("quantity"));
+            pr.setQuantity(rs.getInt("size"));
+            pr.setQuantity(rs.getInt("pquantity"));
             products.add(pr);
         }
         } catch (SQLException ex) {
@@ -83,7 +85,8 @@ public class ProductDBContext extends DBContext {
             pr.setPimage(rs.getString(4));
             pr.setPrice(rs.getDouble(5));
             pr.setPcolor(rs.getString(6));
-            pr.setQuantity(rs.getInt(9));
+            pr.setSize(rs.getInt(7));
+            pr.setQuantity(rs.getInt(8));
             return pr;
             
         }

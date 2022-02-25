@@ -11290,16 +11290,12 @@ textarea.form-control-lg {
 .search-container{
   margin: auto;
 }
-.card-footer .text-center a {
-  margin-left: 10px;
-}
+
 .card-footer .text-center #cart {
-  background-color: green;
-  color: white;
-}
-.card-footer .text-center #details {
   background-color: red;
   color: white;
+  padding: 10px;
+  border-radius: 10px
 }
 .fa-facebook {  
   background: #3B5998;  
@@ -11324,4 +11320,6 @@ textarea.form-control-lg {
 .contact{
   margin-left: 20px;
 }
-
+table{
+    margin-left: 20px;
+}

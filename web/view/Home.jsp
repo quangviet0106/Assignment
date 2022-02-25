@@ -46,8 +46,7 @@
                             </ul>
                             
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Log out</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Log in</a></li>
+                        
                     </ul>
                     <div class="search-container">
                         <form action="search" method="POST">
@@ -55,13 +54,14 @@
                           <button type="submit">Search</button>
                         </form>
                       </div>
-                    <form class="d-flex">
+                          <form class="d-flex" action="listcart">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            
                         </button>
                     </form>
+                          <button class="btn btn-outline-primary ms-lg-2">Login</button>
                 </div>
             </div>
         </nav>
@@ -98,8 +98,13 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a id="cart" class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
-                                    <a id = "details"class="btn btn-outline-dark mt-auto" href="details?pid=<%=p.getPid()%>">Details</a></div>
+                                <div class="text-center">
+                                    <form action="cart/add" method="POST"> 
+                                        <input type="hidden" name="id" value="<%=p.getPid()%>" /> 
+                                        <input id = "cart" type="submit" value="Add to cart"/> 
+                                    </form>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
