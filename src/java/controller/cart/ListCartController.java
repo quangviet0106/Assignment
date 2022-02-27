@@ -5,12 +5,15 @@
  */
 package controller.cart;
 
+import dal.CategoryDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 
 /**
  *
@@ -29,6 +32,9 @@ public class ListCartController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        CategoryDBContext dbCategory = new CategoryDBContext();
+        ArrayList<Category> categorys = dbCategory.getCategory();
+        request.setAttribute("category", categorys);
         request.getRequestDispatcher("view/ListCart.jsp").forward(request, response);
         
     }

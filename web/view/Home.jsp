@@ -23,11 +23,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <% 
             ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("product");
-            
+            Integer totalpage = (Integer)request.getAttribute("totalpage");
+            Integer pageindex = (Integer)request.getAttribute("pageindex");
         %>
+        <script src="js/pagger.js" type="text/javascript"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="home">The Socks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -77,9 +79,6 @@
             </div>
         </header>
         <section class="py-5">
-         
-
-}
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <% for (Product p : products) {%>
@@ -110,8 +109,12 @@
                     </div>
                     <%}%>
                 </div>
-                
+            <div id="paggerbot" class="container-pagging" style="text-align:center"> </div>
+        <script>
+            pagger('paggerbot',<%=pageindex%>,<%=totalpage%>,1);
+        </script>     
         </section>
+              
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="contact text-white">
@@ -129,6 +132,6 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        
     </body>
 </html>

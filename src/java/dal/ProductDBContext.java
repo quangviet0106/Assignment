@@ -20,11 +20,17 @@ import model.Product;
  * @author DELL
  */
 public class ProductDBContext extends DBContext {
-    public ArrayList<Product> getProducts(){
+    public ArrayList<Product> getProducts(int pageindex, int pagesize){
         ArrayList<Product> products = new ArrayList<>();
         try {
-            String sql = "Select * from Product";
+            String sql = "SELECT * FROM\n" +
+                        "(SELECT *, ROW_NUMBER() OVER (ORDER BY pid ASC) as row_index FROM Product) tb\n" +
+                        "WHERE row_index >=(?-1)* ? +1 AND row_index <= ? * ?";
             PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, pageindex);
+            stm.setInt(2, pagesize);
+            stm.setInt(3, pageindex);
+            stm.setInt(4, pagesize);
             ResultSet rs = stm.executeQuery();
         while(rs.next()){
             Product pr = new Product();
@@ -119,6 +125,21 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return products;
+    }
+    public int count()
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 }
 

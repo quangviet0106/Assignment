@@ -45,10 +45,6 @@ public class DetailsController extends HttpServlet {
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);
-       
-        
-        ArrayList<Product> products = dbProduct.getProducts();
-        request.setAttribute("product", products);
         request.getRequestDispatcher("view/Detail.jsp").forward(request, response);
     }
 

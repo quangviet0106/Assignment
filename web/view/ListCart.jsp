@@ -3,7 +3,7 @@
     Created on : Feb 25, 2022, 9:44:17 PM
     Author     : Admin
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.OrderDetail"%>
 <%@page import="model.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +14,7 @@
         <title>The Socks</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/cart.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <%
@@ -59,48 +60,76 @@
                 </div>
             </div>
         </nav>
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <div class="breadcrumb-overlay"></div>
-                    <h1 class="display-4 fw-bolder">Shop Quang Việt</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Uy tín - Chất lượng cao</p>
-                </div>
-
-            </div>
         </header>
-        <% if(order ==null){ %>
-            you did not buy anythings <br/>
-        <%} else {%>
-        
-        <table border="1px solid">
-            <tr> 
-                <th>Image</th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Color</th>
-                <th>Size</th>
-                <th>Quantity</th>
-                <th>Total</th>
-            </tr>
-            <% for (OrderDetail od : order.getDetails()) {
-            %>
-                <tr> 
-                    <td><img style="width: 150px"" src="<%=od.getProduct().getPimage()%>" alt="..."/></td>
-                    <td><%=od.getProduct().getPname() %></td>
-                    <td><%=od.getPrice() %></td>
-                    <td><%=od.getProduct().getPcolor()%></td>
-                    <td><%=od.getProduct().getSize()%></td>
-                    <td><%=od.getOquantity()%></td>
-                    <td><%=od.getTotal()%></td>
-                </tr>
-            <%}%>
-            <tr> 
-                <td colspan="3">Total:</td>
-                <td><%=order.getTotal() %></td>
-            </tr>
-        </table>   
-        <%}%>
+        <div class="cart_section">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="cart_container">
+                    <div class="cart_title">Shopping Cart</div>
+                    <div class="cart_items">
+                        <% if(order ==null){ %>
+                                <h1>Quý khách chưa có sản phẩm nào trong giỏ hàng !</h1> <br/>
+                        <%}else {%>
+                        <ul class="cart_list">
+                            <% for (OrderDetail od : order.getDetails()) {
+                            %>
+                            <li class="cart_item clearfix">
+                                <div class="cart_item_image"><img id="image"src="<%=od.getProduct().getPimage()%>" alt=""></div>
+                                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+                                    <div class="cart_item_name cart_info_col">
+                                        <div class="cart_item_title">Name</div>
+                                        <div class="cart_item_text"><%=od.getProduct().getPname() %></div>
+                                    </div>
+                                    <div class="cart_item_color cart_info_col">
+                                        <div class="cart_item_title">Color</div>
+                                        <div class="cart_item_text"><%=od.getProduct().getPcolor()%></div>
+                                    </div>
+                                    <div class="cart_item_quantity cart_info_col">
+                                        <div class="cart_item_title">Quantity</div>
+                                        <div class="cart_item_text"><%=od.getOquantity()%></div>
+                                    </div>
+                                    <div class="cart_item_price cart_info_col">
+                                        <div class="cart_item_title">Size</div>
+                                        <div class="cart_item_text"><%=od.getProduct().getSize()%></div>
+                                    </div>
+                                    <div class="cart_item_price cart_info_col">
+                                        <div class="cart_item_title">Price</div>
+                                        <div class="cart_item_text"><%=od.getPrice() %></div>
+                                    </div>
+                                    
+                                    <div class="cart_item_total cart_info_col">
+                                        <div class="cart_item_title">Total</div>
+                                        <div class="cart_item_text"><%=od.getTotal()%></div>
+                                    </div>
+                                </div>
+                            </li>
+                            <%}%>
+                            <%}%>
+                        </ul>
+                    </div>
+                                    
+                    <div class="order_total">
+                        <div class="order_total_content text-md-right">
+                            <div class="order_total_title">Order Total:</div>
+                            <div class="order_total_amount"><%=order.getTotal() %></div>
+                        </div>
+                    </div>
+                    <div class="cart_buttons">
+                        <div>
+                            <form action="home" method="POST">
+                            <button type="submit" class="button cart_button_clear">Continue Shopping</button> 
+                            </form>
+                        </div>
+                        <div>
+                            <button type="button" class="button cart_button_checkout">Add to Cart</button> </div>
+                        </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
         <footer class="py-5 bg-dark">
             <div class="contact text-white">

@@ -3,7 +3,7 @@
     Created on : Feb 20, 2022, 4:51:06 PM
     Author     : DELL
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.Category"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Product"%>
@@ -38,10 +38,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thương hiệu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <%for (Category c : categorys) {%>
-                                    <li><a class="dropdown-item" href="#"><%=c.getCname()%></a></li>
+                                <c:forEach items="${category}" var="c">
+                                    <li><a class="dropdown-item ${tag==c.cid ? "active":""}" href="category?cid=${c.cid}">${c.cname}</a></li>
                                     <li><hr class="dropdown-divider" /></li> 
-                               <%}%>  
+                                </c:forEach>
                             </ul>
                         </li>
                        

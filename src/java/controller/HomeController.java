@@ -38,8 +38,19 @@ public class HomeController extends HttpServlet {
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);
         ProductDBContext dbProduct = new ProductDBContext();
-        ArrayList<Product> products = dbProduct.getProducts();
+        String raw_page = request.getParameter("page");
+        if(raw_page ==null || raw_page.trim().length() ==0)
+            raw_page = "1";
+        int pageindex = Integer.parseInt(raw_page);
+        int pagesize = 8;
+        ArrayList<Product> products = dbProduct.getProducts(pageindex,pagesize);
+        int totalrecords = dbProduct.count();
+        int totalpage = (totalrecords%pagesize ==0)?totalrecords/pagesize
+                :(totalrecords/pagesize)+1;
         request.setAttribute("product", products);
+        request.setAttribute("totalpage", totalpage);
+        request.setAttribute("pageindex", pageindex);
+        request.setAttribute("pagesize", pagesize);
         request.getRequestDispatcher("view/Home.jsp").forward(request, response);
         
     }

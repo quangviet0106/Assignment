@@ -60,6 +60,8 @@ public class AddToCartController extends HttpServlet {
         }
         session.setAttribute("shoppingcart", order);
         response.sendRedirect("../home");
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
