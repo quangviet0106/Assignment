@@ -18,7 +18,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <%
-            Order order = (Order)session.getAttribute("shoppingcart");
+            Order order = (Order)session.getAttribute("carts");
         %>
     </head>
     <body>
@@ -53,14 +53,14 @@
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                     </form>
                           <button class="btn btn-outline-primary ms-lg-2">Login</button>
                 </div>
             </div>
         </nav>
-        </header>
+        
         <div class="cart_section">
         <div class="container-fluid">
         <div class="row">
@@ -68,45 +68,40 @@
                 <div class="cart_container">
                     <div class="cart_title">Shopping Cart</div>
                     <div class="cart_items">
-                        <% if(order ==null){ %>
-                                <h1>Quý khách chưa có sản phẩm nào trong giỏ hàng !</h1> <br/>
-                        <%}else {%>
-                        <ul class="cart_list">
-                            <% for (OrderDetail od : order.getDetails()) {
-                            %>
-                            <li class="cart_item clearfix">
-                                <div class="cart_item_image"><img id="image"src="<%=od.getProduct().getPimage()%>" alt=""></div>
-                                <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
-                                    <div class="cart_item_name cart_info_col">
-                                        <div class="cart_item_title">Name</div>
-                                        <div class="cart_item_text"><%=od.getProduct().getPname() %></div>
-                                    </div>
-                                    <div class="cart_item_color cart_info_col">
-                                        <div class="cart_item_title">Color</div>
-                                        <div class="cart_item_text"><%=od.getProduct().getPcolor()%></div>
-                                    </div>
-                                    <div class="cart_item_quantity cart_info_col">
-                                        <div class="cart_item_title">Quantity</div>
-                                        <div class="cart_item_text"><%=od.getOquantity()%></div>
-                                    </div>
-                                    <div class="cart_item_price cart_info_col">
-                                        <div class="cart_item_title">Size</div>
-                                        <div class="cart_item_text"><%=od.getProduct().getSize()%></div>
-                                    </div>
-                                    <div class="cart_item_price cart_info_col">
-                                        <div class="cart_item_title">Price</div>
-                                        <div class="cart_item_text"><%=od.getPrice() %></div>
-                                    </div>
-                                    
-                                    <div class="cart_item_total cart_info_col">
-                                        <div class="cart_item_title">Total</div>
-                                        <div class="cart_item_text"><%=od.getTotal()%></div>
-                                    </div>
-                                </div>
-                            </li>
-                            <%}%>
-                            <%}%>
-                        </ul>
+                        <%if(order == null){%>
+                        <h1>Quý khách chưa thêm sản phẩm vào giỏ hàng !</h1>
+                        <%}else{%>
+                        <table class="table caption-top">
+                            <thead>
+                              <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Color</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                                <th scope="col"></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <%for (OrderDetail detail : order.getDetails()) {%>
+
+
+                              <tr>
+                                  <td><img src="<%=detail.getProduct().getPimage()%>" width="150" height="150"/></td>
+                                <th scope="row"><%=detail.getProduct().getPname()%></th>
+                                <td><%=detail.getProduct().getPcolor()%></td>
+                                <td><%=detail.getProduct().getSize()%></td>
+                                <td><%=detail.getProduct().getPrice()%></td>
+                                <td><%=detail.getOquantity()%></td>
+                                <td><%=detail.getTotal()%></td>
+                                <td><a href="delete-cart?pid=<%=detail.getProduct().getPid()%>" class="btn btn-outline-danger"><i class="bi bi-trash3"></i>Delete</a></td>
+                              </tr>
+                             <%}%>
+                            </tbody>
+                        </table>
+                          
                     </div>
                                     
                     <div class="order_total">
@@ -124,13 +119,12 @@
                         <div>
                             <button type="button" class="button cart_button_checkout">Add to Cart</button> </div>
                         </div>
-                        
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+                        <%}%>
         <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>

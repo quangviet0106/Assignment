@@ -24,6 +24,10 @@
         <servlet-name>PaggingController</servlet-name>
         <servlet-class>controller.PaggingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteCartController</servlet-name>
+        <servlet-class>controller.DeleteCartController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>PaggingController</servlet-name>
         <url-pattern>/pagging</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCartController</servlet-name>
+        <url-pattern>/delete-cart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

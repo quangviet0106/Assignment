@@ -45,6 +45,7 @@ public class DetailsController extends HttpServlet {
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);
+        request.getSession().setAttribute("urlHistory", "details?pid="+id);
         request.getRequestDispatcher("view/Detail.jsp").forward(request, response);
     }
 

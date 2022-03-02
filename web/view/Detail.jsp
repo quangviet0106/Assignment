@@ -25,6 +25,7 @@
             ArrayList<Category> categorys = (ArrayList<Category>) request.getAttribute("category");
             
         %>
+        
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -52,11 +53,11 @@
                           <button type="submit">Search</button>
                         </form>
                       </div>
-                    <form class="d-flex">
+                    <form class="d-flex" action="listcart">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                     </form>
                         <button class="btn btn-outline-primary ms-lg-2">Login</button>
@@ -91,11 +92,14 @@
                         <p class="lead">${detail.pdescription}</p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <form action="cart/add" method="POST"> 
+                             <input type="hidden" name="id" value="${detail.pid}" /> 
+                            <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            </form>
+                            <button class="btn btn-outline-dark flex-shrink-0 ms-2" type="button">
                                 <i>Mua Ngay</i>
                                 
                             </button>
@@ -103,7 +107,8 @@
                     </div>
                 </div>
             </div>
-       
+             
+        </section>            
                  <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>
@@ -120,6 +125,6 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        
     </body>     
 </html>

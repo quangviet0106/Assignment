@@ -35,7 +35,7 @@ public class AddToCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Order order = (Order) session.getAttribute("shoppingcart");
+        Order order = (Order) session.getAttribute("carts");
         int id = Integer.parseInt(request.getParameter("id"));
         ProductDBContext dbProduct = new ProductDBContext();
         Product product = dbProduct.getProductByID(id);
@@ -58,9 +58,12 @@ public class AddToCartController extends HttpServlet {
             detail.setPrice(product.getPrice());
             order.getDetails().add(detail);
         }
-        session.setAttribute("shoppingcart", order);
-        response.sendRedirect("../home");
-        
+        session.setAttribute("carts", order);
+        String urlHistory = (String)session.getAttribute("urlHistory");
+        if(urlHistory == null){
+            urlHistory = "../home";
+        }
+        response.sendRedirect("../"+urlHistory);
         
     }
 

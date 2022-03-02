@@ -5,23 +5,23 @@
  */
 package controller;
 
-import dal.CategoryDBContext;
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
+import javax.servlet.http.HttpSession;
+import model.Order;
+import model.OrderDetail;
 import model.Product;
 
 /**
  *
- * @author DELL
+ * @author Admin
  */
-public class HomeController extends HttpServlet {
+public class DeleteCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,27 +34,24 @@ public class HomeController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CategoryDBContext dbCategory = new CategoryDBContext();
-        ArrayList<Category> categorys = dbCategory.getCategory();
-        request.setAttribute("category", categorys);
-        ProductDBContext dbProduct = new ProductDBContext();
-        String raw_page = request.getParameter("page");
-        if(raw_page ==null || raw_page.trim().length() ==0)
-            raw_page = "1";
-        int pageindex = Integer.parseInt(raw_page);
-        int pagesize = 8;
-        ArrayList<Product> products = dbProduct.getProducts(pageindex,pagesize);
-        int totalrecords = dbProduct.count();
-        int totalpage = (totalrecords%pagesize ==0)?totalrecords/pagesize
-                :(totalrecords/pagesize)+1;
-        request.setAttribute("product", products);
-        request.setAttribute("totalpage", totalpage);
-        request.setAttribute("pageindex", pageindex);
-        request.setAttribute("pagesize", pagesize);
-        request.getSession().setAttribute("urlHistory", "home");
-        request.getRequestDispatcher("view/Home.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        int id = Integer.parseInt(request.getParameter("pid"));
+        HttpSession session = request.getSession();
+        Order order = (Order) session.getAttribute("carts");
         
+        if(order == null)
+            order = new Order();
+         
+        for (OrderDetail detail : order.getDetails()) {
+            if(detail.getProduct().getPid() == id){
+               order.getDetails().remove(id);
+                break;
+            }
+        }
+        session.setAttribute("carts", order);
+        response.sendRedirect("listcart");
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -94,5 +91,5 @@ public class HomeController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
+
