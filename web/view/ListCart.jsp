@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="model.OrderDetail"%>
 <%@page import="model.Order"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -65,12 +66,12 @@
         <div class="container-fluid">
         <div class="row">
             <div class="col-lg-10 offset-lg-1">
-                <div class="cart_container">
+                <div class="cart_container" style="min-height: 1000px">
                     <div class="cart_title">Shopping Cart</div>
+                    <%if(order == null){%>
+                    <h1>ListCart is empty !</h1>
+                    <%}else{%>
                     <div class="cart_items">
-                        <%if(order == null){%>
-                        <h1>Quý khách chưa thêm sản phẩm vào giỏ hàng !</h1>
-                        <%}else{%>
                         <table class="table caption-top">
                             <thead>
                               <tr>
@@ -94,16 +95,16 @@
                                 <td><%=detail.getProduct().getPcolor()%></td>
                                 <td><%=detail.getProduct().getSize()%></td>
                                 <td><%=detail.getProduct().getPrice()%></td>
-                                <td><%=detail.getOquantity()%></td>
+                                <td><%=detail.getQuantity()%></td>
                                 <td><%=detail.getTotal()%></td>
-                                <td><a href="delete-cart?pid=<%=detail.getProduct().getPid()%>" class="btn btn-outline-danger"><i class="bi bi-trash3"></i>Delete</a></td>
+                                <td><a href="delete-cart?id=<%=detail.getProduct().getPid()%>" class="btn btn-outline-danger"><i class="bi bi-trash3"></i>Delete</a></td>
                               </tr>
                              <%}%>
                             </tbody>
                         </table>
-                          
+                         
                     </div>
-                                    
+                        
                     <div class="order_total">
                         <div class="order_total_content text-md-right">
                             <div class="order_total_title">Order Total:</div>
@@ -124,7 +125,7 @@
         </div>
     </div>
 </div>
-                        <%}%>
+<%}%>  
         <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>

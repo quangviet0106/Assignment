@@ -5,12 +5,21 @@
  */
 package model;
 
+/**
+ *
+ * @author SAP-LAP-FPT
+ */
 public class OrderDetail {
     private Product product;
     private Order order;
-    private double oquantity;
-    private double price;
-
+    private int quantity;
+    private double Price;
+    
+    public double getTotal()
+    {
+        return quantity * Price;
+    }
+    
     public Product getProduct() {
         return product;
     }
@@ -27,24 +36,20 @@ public class OrderDetail {
         this.order = order;
     }
 
-    public double getOquantity() {
-        return oquantity;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setOquantity(double oquantity) {
-        this.oquantity = oquantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public double getPrice() {
-        return price;
+        return Price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-     public double getTotal()
-    {
-        return oquantity * price;
+    public void setPrice(double Price) {
+        this.Price = Price;
     }
     
 }

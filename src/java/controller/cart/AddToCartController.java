@@ -8,11 +8,13 @@ package controller.cart;
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import model.Order;
 import model.OrderDetail;
 import model.Product;
@@ -46,7 +48,7 @@ public class AddToCartController extends HttpServlet {
         for (OrderDetail detail : order.getDetails()) {
             if(detail.getProduct().getPid() == product.getPid()){
                 isExist = true;
-                detail.setOquantity(detail.getOquantity()+1);
+                detail.setQuantity(detail.getQuantity()+1);
                 break;
             }
         }
@@ -54,7 +56,7 @@ public class AddToCartController extends HttpServlet {
             OrderDetail detail = new OrderDetail();
             detail.setProduct(product);
             detail.setOrder(order);
-            detail.setOquantity(1);
+            detail.setQuantity(1);
             detail.setPrice(product.getPrice());
             order.getDetails().add(detail);
         }
@@ -64,6 +66,8 @@ public class AddToCartController extends HttpServlet {
             urlHistory = "../home";
         }
         response.sendRedirect("../"+urlHistory);
+        
+        
         
     }
 

@@ -9,25 +9,26 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Admin
+ * @author SAP-LAP-FPT
  */
 public class Order {
     private ArrayList<OrderDetail> details = new ArrayList<>();
-
+    
+    public float getTotal()
+    {
+        float sum = 0;
+        for (OrderDetail detail : details) {
+            sum+= detail.getTotal();
+        }
+        return sum;
+    }
+    
     public ArrayList<OrderDetail> getDetails() {
         return details;
     }
 
     public void setDetails(ArrayList<OrderDetail> details) {
         this.details = details;
-    }
-    public double getTotal()
-    {
-        double sum = 0;
-        for (OrderDetail detail : details) {
-            sum+= detail.getTotal();
-        }
-        return sum;
     }
     
 }
