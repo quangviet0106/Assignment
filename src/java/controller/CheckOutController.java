@@ -5,24 +5,18 @@
  */
 package controller;
 
-import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Order;
-import model.OrderDetail;
-import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class DeleteCartController extends HttpServlet {
+public class CheckOutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,27 +30,8 @@ public class DeleteCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        HttpSession session = request.getSession();
-        Order order = (Order) session.getAttribute("carts");
-        int id = Integer.parseInt(request.getParameter("id"));
-        ProductDBContext dbProduct = new ProductDBContext();
-        Product product = dbProduct.getProductByID(id);
-        if(order == null){
-            order = new Order();
-        }
-        for (OrderDetail detail  : order.getDetails()) {
-            if(detail.getProduct().getPid() == product.getPid()){
-                order.getDetails().remove(detail.getProduct());
-                break;
-            }
-        }
-        
-      
-        session.setAttribute("carts", order);
-        response.sendRedirect("listcart");
+        request.getRequestDispatcher("view/CheckOut.jsp").forward(request, response);
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -96,5 +71,5 @@ public class DeleteCartController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-}
 
+}

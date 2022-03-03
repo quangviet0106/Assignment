@@ -91,7 +91,7 @@
                             <form action="update-cart">
                               <tr>
                               <input type="hidden" name="id" value="<%=detail.getProduct().getPid()%>"/>
-                              <td><img src="<%=detail.getProduct().getPimage()%>" width="150" style="height:150px"/></td>
+                                 <td><img src="<%=detail.getProduct().getPimage()%>" width="150" height="150"/></td>
                                 <th scope="row"><%=detail.getProduct().getPname()%></th>
                                 <td><%=detail.getProduct().getPcolor()%></td>
                                 <td><%=detail.getProduct().getSize()%></td>

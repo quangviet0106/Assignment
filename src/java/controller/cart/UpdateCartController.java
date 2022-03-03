@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.cart;
 
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +21,7 @@ import model.Product;
  *
  * @author Admin
  */
-public class DeleteCartController extends HttpServlet {
+public class UpdateCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,27 +35,22 @@ public class DeleteCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        HttpSession session = request.getSession();
-        Order order = (Order) session.getAttribute("carts");
-        int id = Integer.parseInt(request.getParameter("id"));
-        ProductDBContext dbProduct = new ProductDBContext();
-        Product product = dbProduct.getProductByID(id);
-        if(order == null){
+       int id = Integer.parseInt(request.getParameter("id"));
+       int quantity = Integer.parseInt(request.getParameter("quantity"));
+       HttpSession session = request.getSession();
+       Order order = (Order) session.getAttribute("carts");
+       ProductDBContext dbProduct = new ProductDBContext();
+       Product product = dbProduct.getProductByID(id);
+       if(order == null)
             order = new Order();
-        }
-        for (OrderDetail detail  : order.getDetails()) {
-            if(detail.getProduct().getPid() == product.getPid()){
-                order.getDetails().remove(detail.getProduct());
-                break;
+        for (OrderDetail detail : order.getDetails()) {
+            if(detail.getProduct().getPid() == product.getPid() ){
+                detail.setQuantity(quantity);
             }
         }
-        
-      
         session.setAttribute("carts", order);
         response.sendRedirect("listcart");
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -96,5 +90,5 @@ public class DeleteCartController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-}
 
+}
