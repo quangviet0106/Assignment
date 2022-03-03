@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ListCart
-    Created on : Feb 25, 2022, 9:44:17 PM
+    Document   : CheckOut
+    Created on : Mar 3, 2022, 9:13:05 PM
     Author     : Admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>The Socks</title>
+        <title>JSP Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/cart.css" rel="stylesheet" />
@@ -23,7 +23,7 @@
         %>
     </head>
     <body>
-       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="home">The Socks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -61,17 +61,12 @@
                 </div>
             </div>
         </nav>
-        
-        <div class="cart_section">
-        <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="cart_container" style="min-height: 1000px">
-                    <div class="cart_title">Shopping Cart</div>
-                    <%if(order == null){%>
-                    <h1>ListCart is empty !</h1>
-                    <%}else{%>
-                    <div class="cart_items">
+        <section class="py-5"> 
+            <div class="container" style="min-height: 1000px">
+                <h1>CheckOut</h1>
+                <div class="row">
+                    <div class="col-md-9" style="border: 1px solid #ccc ; border-radius: 5px;padding: 1rem;">
+                        <div class="cart_items">
                         <table class="table caption-top">
                             <thead>
                               <tr>
@@ -91,7 +86,7 @@
                             <form action="update-cart">
                               <tr>
                               <input type="hidden" name="id" value="<%=detail.getProduct().getPid()%>"/>
-                                 <td><img src="<%=detail.getProduct().getPimage()%>" width="150" height="150"/></td>
+                              <td><img src="<%=detail.getProduct().getPimage()%>" width="150" style="height:150px"/></td>
                                 <th scope="row"><%=detail.getProduct().getPname()%></th>
                                 <td><%=detail.getProduct().getPcolor()%></td>
                                 <td><%=detail.getProduct().getSize()%></td>
@@ -113,19 +108,28 @@
                             <div class="order_total_amount"><%=order.getTotal() %>00₫</div>
                         </div>
                     </div>
-                    <div class="cart_buttons">
-                            <form action="home" method="POST">
-                            <button type="submit" class="button cart_button_clear">Continue Shopping</button> 
-                            </form>
-                            <button type="button" class="button cart_button_checkout mt-5">Check Out</button> 
                     </div>
-                  
+                    <div class="col-md-3" style="border: 1px solid #ccc ; border-radius: 5px;padding: 1rem;">
+                        <form>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Email address</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Password</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3 form-check">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                      </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<%}%>  
+        </section>
         <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>
@@ -142,6 +146,5 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        
     </body>
 </html>
