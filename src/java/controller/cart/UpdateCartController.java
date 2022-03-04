@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Order;
-import model.OrderDetail;
+import model.Cart;
+import model.CartDetail;
+
 import model.Product;
 
 /**
@@ -38,17 +39,17 @@ public class UpdateCartController extends HttpServlet {
        int id = Integer.parseInt(request.getParameter("id"));
        int quantity = Integer.parseInt(request.getParameter("quantity"));
        HttpSession session = request.getSession();
-       Order order = (Order) session.getAttribute("carts");
+       Cart cart = (Cart) session.getAttribute("carts");
        ProductDBContext dbProduct = new ProductDBContext();
        Product product = dbProduct.getProductByID(id);
-       if(order == null)
-            order = new Order();
-        for (OrderDetail detail : order.getDetails()) {
+       if(cart == null)
+            cart = new Cart();
+        for (CartDetail detail : cart.getDetails()) {
             if(detail.getProduct().getPid() == product.getPid() ){
                 detail.setQuantity(quantity);
             }
         }
-        session.setAttribute("carts", order);
+        session.setAttribute("carts", cart);
         response.sendRedirect("listcart");
     }
 

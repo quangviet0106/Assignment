@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Order;
-import model.OrderDetail;
+import model.Cart;
+import model.CartDetail;
+
 import model.Product;
 
 /**
@@ -38,22 +39,22 @@ public class DeleteCartController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession();
-        Order order = (Order) session.getAttribute("carts");
+        Cart cart = (Cart) session.getAttribute("carts");
         int id = Integer.parseInt(request.getParameter("id"));
         ProductDBContext dbProduct = new ProductDBContext();
         Product product = dbProduct.getProductByID(id);
-        if(order == null){
-            order = new Order();
+        if(cart == null){
+            cart = new Cart();
         }
-        for (OrderDetail detail  : order.getDetails()) {
+        for (CartDetail detail  : cart.getDetails()) {
             if(detail.getProduct().getPid() == product.getPid()){
-                order.getDetails().remove(detail.getProduct());
+                cart.getDetails().remove(detail.getProduct());
                 break;
             }
         }
         
       
-        session.setAttribute("carts", order);
+        session.setAttribute("carts", cart);
         response.sendRedirect("listcart");
     }
     

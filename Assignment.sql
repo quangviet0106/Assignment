@@ -1,5 +1,17 @@
 ﻿USE Assignment
-
+CREATE TABLE [dbo].[Account](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[username] [nvarchar](255) NULL,
+	[password] [nvarchar](255) NULL,
+	[displayName] [nvarchar](255) NULL,
+	[address] [nvarchar](255) NULL,
+	[email] [nvarchar](255) NULL,
+	[phone] [nvarchar](255) NULL,
+ CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
 CREATE TABLE Category(
 cid int not null primary key,
 cname nvarchar(255)
@@ -19,6 +31,52 @@ CREATE TABLE Product (
 	
 	
 );
+
+CREATE TABLE [dbo].[OrderDetail](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[order_id] [int] NULL,
+	[productName] [nvarchar](255) NULL,
+	[productImage] [nvarchar](255) NULL,
+	[productPrice] [float] NULL,
+	[productColor] [nvarchar](255) NULL,
+	[productSize] [int] NULL,
+	[quantity] [int] NULL,
+ CONSTRAINT [PK_OrderDetail] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+CREATE TABLE [dbo].[Orders](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[account_id] [int] NULL,
+	[totalPrice] [float] NULL,
+	[note] [text] NULL,
+	[created_date] [date] NULL,
+	[shipping_id] [int] NULL,
+ CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+CREATE TABLE [dbo].[Shipping](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[name] [nvarchar](255) NULL,
+	[phone] [nvarchar](255) NULL,
+	[address] [nvarchar](255) NULL,
+ CONSTRAINT [PK_Shipping] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+ALTER TABLE [dbo].[OrderDetail]  WITH CHECK ADD  CONSTRAINT [FK__OrderDeta__order__30F848ED] FOREIGN KEY([order_id])
+REFERENCES [dbo].[Orders] ([id])
+ALTER TABLE [dbo].[OrderDetail] CHECK CONSTRAINT [FK__OrderDeta__order__30F848ED]
+ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK__Orders__account___2F10007B] FOREIGN KEY([account_id])
+REFERENCES [dbo].[Account] ([id])
+ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK__Orders__account___2F10007B]
+ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK__Orders__shipping__300424B4] FOREIGN KEY([shipping_id])
+REFERENCES [dbo].[Shipping] ([id])
+ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK__Orders__shipping__300424B4]
 INSERT INTO [dbo].[Category]([cid],[cname])VALUES (1,'Adidas')
 INSERT INTO [dbo].[Category]([cid],[cname])VALUES (2,'Nike')
 INSERT INTO [dbo].[Category]([cid],[cname])VALUES (3,'Uniqlo')

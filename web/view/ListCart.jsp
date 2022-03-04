@@ -3,10 +3,12 @@
     Created on : Feb 25, 2022, 9:44:17 PM
     Author     : Admin
 --%>
+<%@page import="model.CartDetail"%>
+<%@page import="model.Cart"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<%@page import="model.OrderDetail"%>
-<%@page import="model.Order"%>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +21,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <%
-            Order order = (Order)session.getAttribute("carts");
+            Cart cart = (Cart)session.getAttribute("carts");
         %>
     </head>
     <body>
@@ -68,7 +70,7 @@
             <div class="col-lg-10 offset-lg-1">
                 <div class="cart_container" style="min-height: 1000px">
                     <div class="cart_title">Shopping Cart</div>
-                    <%if(order == null){%>
+                    <%if(cart == null){%>
                     <h1>ListCart is empty !</h1>
                     <%}else{%>
                     <div class="cart_items">
@@ -86,7 +88,7 @@
                               </tr>
                             </thead>
                             <tbody>
-                                <%for (OrderDetail detail : order.getDetails()) {%>
+                                <%for (CartDetail detail : cart.getDetails()) {%>
 
                             <form action="update-cart">
                               <tr>
@@ -110,14 +112,17 @@
                     <div class="order_total">
                         <div class="order_total_content text-md-right">
                             <div class="order_total_title">Order Total:</div>
-                            <div class="order_total_amount"><%=order.getTotal() %>00₫</div>
+                            <div class="order_total_amount"><%=cart.getTotal() %>00₫</div>
                         </div>
                     </div>
                     <div class="cart_buttons">
                             <form action="home" method="POST">
                             <button type="submit" class="button cart_button_clear">Continue Shopping</button> 
                             </form>
-                            <button type="button" class="button cart_button_checkout mt-5">Check Out</button> 
+                            <form action="checkout" method="GET">
+                                    <button type="submit" class="button cart_button_checkout mt-5">Check Out</button> 
+                            </form>
+                            
                     </div>
                   
                 </div>

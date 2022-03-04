@@ -5,30 +5,65 @@
  */
 package model;
 
-import java.util.ArrayList;
-
 /**
  *
- * @author SAP-LAP-FPT
+ * @author Admin
  */
 public class Order {
-    private ArrayList<OrderDetail> details = new ArrayList<>();
-    
-    public float getTotal()
-    {
-        float sum = 0;
-        for (OrderDetail detail : details) {
-            sum+= detail.getTotal();
-        }
-        return sum;
-    }
-    
-    public ArrayList<OrderDetail> getDetails() {
-        return details;
+    private int id;
+    private int accountId;
+    private double totalPrice;
+    private String note;
+    private String createdDate;
+    private int shippingId;
+
+    public int getId() {
+        return id;
     }
 
-    public void setDetails(ArrayList<OrderDetail> details) {
-        this.details = details;
+    public void setId(int id) {
+        this.id = id;
     }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(String createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public int getShippingId() {
+        return shippingId;
+    }
+
+    public void setShippingId(int shippingId) {
+        this.shippingId = shippingId;
+    }
+    
     
 }

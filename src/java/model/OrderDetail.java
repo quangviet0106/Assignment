@@ -7,33 +7,72 @@ package model;
 
 /**
  *
- * @author SAP-LAP-FPT
+ * @author Admin
  */
 public class OrderDetail {
-    private Product product;
-    private Order order;
+    private int id;
+    private int orderId;
+    private String productName;
+    private String productImage;
+    private double productPrice;
+    private String productColor;
+    private int productSize;
     private int quantity;
-    private double Price;
-    
-    public double getTotal()
-    {
-        return quantity * Price;
-    }
-    
-    public Product getProduct() {
-        return product;
+
+    public int getId() {
+        return id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Order getOrder() {
-        return order;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
+
+    public double getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public String getProductColor() {
+        return productColor;
+    }
+
+    public void setProductColor(String productColor) {
+        this.productColor = productColor;
+    }
+
+    public int getProductSize() {
+        return productSize;
+    }
+
+    public void setProductSize(int productSize) {
+        this.productSize = productSize;
     }
 
     public int getQuantity() {
@@ -43,13 +82,6 @@ public class OrderDetail {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public double getPrice() {
-        return Price;
-    }
-
-    public void setPrice(double Price) {
-        this.Price = Price;
-    }
+    
     
 }

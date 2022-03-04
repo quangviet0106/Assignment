@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Cart;
+import model.CartDetail;
 
-import model.Order;
-import model.OrderDetail;
+
+
 import model.Product;
 
 /**
@@ -37,15 +39,15 @@ public class AddToCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Order order = (Order) session.getAttribute("carts");
+        Cart cart = (Cart) session.getAttribute("carts");
         int id = Integer.parseInt(request.getParameter("id"));
         ProductDBContext dbProduct = new ProductDBContext();
         Product product = dbProduct.getProductByID(id);
         
-        if(order == null)
-            order = new Order();
+        if(cart == null)
+            cart = new Cart();
         boolean isExist = false;
-        for (OrderDetail detail : order.getDetails()) {
+        for (CartDetail detail : cart.getDetails()) {
             if(detail.getProduct().getPid() == product.getPid()){
                 isExist = true;
                 detail.setQuantity(detail.getQuantity()+1);
@@ -53,14 +55,14 @@ public class AddToCartController extends HttpServlet {
             }
         }
         if(!isExist){
-            OrderDetail detail = new OrderDetail();
+            CartDetail detail = new CartDetail();
             detail.setProduct(product);
-            detail.setOrder(order);
+            detail.setOrder(cart);
             detail.setQuantity(1);
             detail.setPrice(product.getPrice());
-            order.getDetails().add(detail);
+            cart.getDetails().add(detail);
         }
-        session.setAttribute("carts", order);
+        session.setAttribute("carts", cart);
         String urlHistory = (String)session.getAttribute("urlHistory");
         if(urlHistory == null){
             urlHistory = "../home";
