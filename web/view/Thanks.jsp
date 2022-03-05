@@ -43,14 +43,19 @@
                           <button type="submit">Search</button>
                         </form>
                       </div>
-                          <form class="d-flex" action="listcart">
+                        <form class="d-flex" action="listcart">
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
-                    </form>
-                          <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
+                        </form>
+                        <form action="login" method="POST">
+                            <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
+                        </form>
+                        <form action="signup" method="POST">
+                            <button class="btn btn-outline-primary ms-lg-2">Đăng Ký</button>
+                        </form>
                 </div>
             </div>
         </nav>

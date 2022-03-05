@@ -67,4 +67,55 @@ public class AccountDBContext extends DBContext{
         Account a = db.getAccoun("huy", "12345");
         System.out.println(a);
     }
+    
+    public Account checkAccountExist(String username)
+    {
+        try {
+            String sql = "SELECT username,password,displayName,address,email,phone FROM Account WHERE username = ? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1,username);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                Account account = new Account();
+                account.setUsername(rs.getString("username"));
+                account.setPassword(rs.getString("password"));
+                account.setDisplay(rs.getString("displayName"));
+                account.setAddress(rs.getString("address"));
+                account.setEmail(rs.getString("email"));
+                account.setPhone(rs.getString("phone"));
+                return account;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public void SignUp(String username, String password ,String displayname,String address, String email, String phone){
+        try {
+            String sql = "INSERT INTO [dbo].[Account]\n" +
+                    "           ([username]\n" +
+                    "           ,[password]\n" +
+                    "           ,[displayName]\n" +
+                    "           ,[address]\n" +
+                    "           ,[email]\n" +
+                    "           ,[phone]\n" +
+                    "           ,[gid])\n" +
+                    "     VALUES\n" +
+                    "           (?,?,?,?,?,?,2)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1,username);
+            stm.setString(2, password);
+            stm.setString(3, displayname);
+            stm.setString(4, address);
+            stm.setString(5, email);
+            stm.setString(6, phone);
+            stm.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
