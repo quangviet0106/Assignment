@@ -30,7 +30,7 @@ public class OrderDBContext extends DBContext{
                             +"           (?,?,?,?)";
             PreparedStatement stm = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             
-            stm.setInt(1, order.getAccountId());
+            stm.setString(1, order.getUsername());
             stm.setDouble(2, order.getTotalPrice());
             stm.setString(3, order.getNote());
             stm.setInt(4, order.getShippingId());

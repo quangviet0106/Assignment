@@ -34,8 +34,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Trang Chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thương hiệu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -60,7 +60,7 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                     </form>
-                        <button class="btn btn-outline-primary ms-lg-2">Login</button>
+                        <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
                 </div>
             </div>
         </nav>
@@ -92,11 +92,11 @@
                         <p class="lead">${detail.pdescription}</p>
                         <div class="d-flex">
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <form action="cart/add" method="POST"> 
+                            <form action="addcart" method="POST"> 
                              <input type="hidden" name="id" value="${detail.pid}" /> 
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
                                 <i class="bi-cart-fill me-1"></i>
-                                Add to cart
+                                Thêm vào giỏ hàng
                             </button>
                             </form>
                             <button class="btn btn-outline-dark flex-shrink-0 ms-2" type="button">

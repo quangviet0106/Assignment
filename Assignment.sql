@@ -1,17 +1,55 @@
 ﻿USE Assignment
+CREATE TABLE [dbo].[Group](
+	[gid] [int]  NOT NULL,
+	[gname] [varchar](150) NOT NULL,
+ CONSTRAINT [PK_Group] PRIMARY KEY CLUSTERED 
+(
+	[gid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+
+
 CREATE TABLE [dbo].[Account](
-	[id] [int] IDENTITY(1,1) NOT NULL,
-	[username] [nvarchar](255) NULL,
-	[password] [nvarchar](255) NULL,
+	
+	[username] [varchar](255) NOT NULL Primary key,
+	[password] [varchar](255) NOT NULL,
 	[displayName] [nvarchar](255) NULL,
 	[address] [nvarchar](255) NULL,
 	[email] [nvarchar](255) NULL,
 	[phone] [nvarchar](255) NULL,
- CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED 
+	[gid] [int] NOT NULL
+	FOREIGN KEY (gid) REFERENCES [Group](gid),
+)
+
+CREATE TABLE [dbo].[Group_Feature](
+	[gid] [int] NOT NULL,
+	[fid] [int] NOT NULL,
+ CONSTRAINT [PK_Group_Feature] PRIMARY KEY CLUSTERED 
 (
-	[id] ASC
+	[gid] ASC,
+	[fid] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+CREATE TABLE [dbo].[Feature](
+	[fid] [int] NOT NULL,
+	[description] [varchar](150) NOT NULL,
+	[url] [varchar](1000) NOT NULL,
+ CONSTRAINT [PK_Feature] PRIMARY KEY CLUSTERED 
+(
+	[fid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+ALTER TABLE [dbo].[Group_Feature]  WITH CHECK ADD  CONSTRAINT [FK_Group_Feature_Feature] FOREIGN KEY([fid])
+REFERENCES [dbo].[Feature] ([fid])
+ALTER TABLE [dbo].[Group_Feature] CHECK CONSTRAINT [FK_Group_Feature_Feature]
+ALTER TABLE [dbo].[Group_Feature]  WITH CHECK ADD  CONSTRAINT [FK_Group_Feature_Group] FOREIGN KEY([gid])
+REFERENCES [dbo].[Group] ([gid])
+ALTER TABLE [dbo].[Group_Feature] CHECK CONSTRAINT [FK_Group_Feature_Group]
+
+
+
 CREATE TABLE Category(
 cid int not null primary key,
 cname nvarchar(255)
@@ -34,7 +72,7 @@ CREATE TABLE Product (
 
 CREATE TABLE [dbo].[OrderDetail](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[order_id] [int] NULL,
+	[order_id] [int] NOT NULL,
 	[productName] [nvarchar](255) NULL,
 	[productImage] [nvarchar](255) NULL,
 	[productPrice] [float] NULL,
@@ -46,9 +84,20 @@ CREATE TABLE [dbo].[OrderDetail](
 	[id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
+CREATE TABLE [dbo].[Group_Feature](
+	[gid] [int] NOT NULL,
+	[fid] [int] NOT NULL,
+ CONSTRAINT [PK_Group_Feature] PRIMARY KEY CLUSTERED 
+(
+	[gid] ASC,
+	[fid] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
 CREATE TABLE [dbo].[Orders](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[account_id] [int] NULL,
+	[username] [varchar](255) NULL,
 	[totalPrice] [float] NULL,
 	[note] [text] NULL,
 	[created_date] [date] NULL,
@@ -71,8 +120,8 @@ CREATE TABLE [dbo].[Shipping](
 ALTER TABLE [dbo].[OrderDetail]  WITH CHECK ADD  CONSTRAINT [FK__OrderDeta__order__30F848ED] FOREIGN KEY([order_id])
 REFERENCES [dbo].[Orders] ([id])
 ALTER TABLE [dbo].[OrderDetail] CHECK CONSTRAINT [FK__OrderDeta__order__30F848ED]
-ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK__Orders__account___2F10007B] FOREIGN KEY([account_id])
-REFERENCES [dbo].[Account] ([id])
+ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK__Orders__account___2F10007B] FOREIGN KEY([username])
+REFERENCES [dbo].[Account] ([username])
 ALTER TABLE [dbo].[Orders] CHECK CONSTRAINT [FK__Orders__account___2F10007B]
 ALTER TABLE [dbo].[Orders]  WITH CHECK ADD  CONSTRAINT [FK__Orders__shipping__300424B4] FOREIGN KEY([shipping_id])
 REFERENCES [dbo].[Shipping] ([id])

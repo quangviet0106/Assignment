@@ -5,6 +5,7 @@
  */
 package controller.cart;
 
+import controller.Login.BaseAuthenticationController;
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,7 +26,7 @@ import model.Product;
  *
  * @author Admin
  */
-public class AddToCartController extends HttpServlet {
+public class AddToCartController extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -65,9 +66,9 @@ public class AddToCartController extends HttpServlet {
         session.setAttribute("carts", cart);
         String urlHistory = (String)session.getAttribute("urlHistory");
         if(urlHistory == null){
-            urlHistory = "../home";
+            urlHistory = "home";
         }
-        response.sendRedirect("../"+urlHistory);
+        response.sendRedirect(urlHistory);
         
         
         
@@ -83,7 +84,7 @@ public class AddToCartController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -97,7 +98,7 @@ public class AddToCartController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }

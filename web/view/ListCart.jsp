@@ -31,8 +31,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Trang Chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thương hiệu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -59,7 +59,7 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                     </form>
-                          <button class="btn btn-outline-primary ms-lg-2">Login</button>
+                          <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
                 </div>
             </div>
         </nav>
@@ -117,10 +117,10 @@
                     </div>
                     <div class="cart_buttons">
                             <form action="home" method="POST">
-                            <button type="submit" class="button cart_button_clear">Continue Shopping</button> 
+                            <button type="submit" class="button cart_button_clear">Quay lại</button> 
                             </form>
                             <form action="checkout" method="GET">
-                                    <button type="submit" class="button cart_button_checkout mt-5">Check Out</button> 
+                                    <button type="submit" class="button cart_button_checkout mt-5">Thanh Toán</button> 
                             </form>
                             
                     </div>

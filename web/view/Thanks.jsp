@@ -12,7 +12,6 @@
         <title>JSP Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/cart.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
     </head>
@@ -23,8 +22,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Trang Chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thương hiệu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -51,7 +50,7 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                     </form>
-                          <button class="btn btn-outline-primary ms-lg-2">Login</button>
+                          <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
                 </div>
             </div>
         </nav>
@@ -59,7 +58,7 @@
             <div class="alert alert-success text-center" role="alert">
             Quý khách đã đặt hàng thành công !
             <div class="text-center">
-                <a class="btn btn-outline-primary mt-5" href="home">Continue Shopping</a>
+                <a class="btn btn-outline-primary mt-5" href="home">Tiếp tục mua sắm</a>
             </div>
             </div>               
         </div>                  

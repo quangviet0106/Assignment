@@ -89,7 +89,7 @@ public class CheckOutController extends HttpServlet {
        HttpSession session = request.getSession();
        Cart cart = (Cart) session.getAttribute("carts");
        Order order = new Order();
-       order.setAccountId(1);
+       order.setUsername("huy");
        order.setShippingId(shippingId);
        order.setTotalPrice(cart.getTotal());
        order.setNote(note);

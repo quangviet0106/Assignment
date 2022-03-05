@@ -4,6 +4,7 @@
     Author     : DELL
 --%>
 
+<%@page import="model.Account"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.Category"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,6 +26,7 @@
             ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("product");
             Integer totalpage = (Integer)request.getAttribute("totalpage");
             Integer pageindex = (Integer)request.getAttribute("pageindex");
+            
         %>
         <script src="js/pagger.js" type="text/javascript"></script>
     </head>
@@ -35,8 +37,8 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Trang Chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào </a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thương hiệu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -63,7 +65,7 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                     </form>
-                          <button class="btn btn-outline-primary ms-lg-2">Login</button>
+                          <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
                 </div>
             </div>
         </nav>
@@ -98,7 +100,7 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
-                                    <form action="cart/add" method="POST"> 
+                                    <form action="addcart" method="POST"> 
                                         <input type="hidden" name="id" value="<%=p.getPid()%>" /> 
                                         <input id = "cart" type="submit" value="Add to cart"/> 
                                     </form>
