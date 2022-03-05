@@ -14,7 +14,7 @@ public class OrderDetail {
     private int orderId;
     private String productName;
     private String productImage;
-    private double productPrice;
+    private int productPrice;
     private String productColor;
     private int productSize;
     private int quantity;
@@ -51,11 +51,11 @@ public class OrderDetail {
         this.productImage = productImage;
     }
 
-    public double getProductPrice() {
+    public int getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
+    public void setProductPrice(int productPrice) {
         this.productPrice = productPrice;
     }
 

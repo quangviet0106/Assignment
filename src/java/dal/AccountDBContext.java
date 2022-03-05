@@ -20,7 +20,7 @@ public class AccountDBContext extends DBContext{
     public Account getAccoun(String username, String password)
     {
         try {
-            String sql = "SELECT username,password,displayName,address,email,phone FROM Account WHERE username = ? AND password = ?";
+            String sql = "SELECT username,password,displayName,address,email,phone,gid FROM Account WHERE username = ? AND password = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1,username);
             stm.setString(2, password);
@@ -31,10 +31,11 @@ public class AccountDBContext extends DBContext{
                 Account account = new Account();
                 account.setUsername(rs.getString("username"));
                 account.setPassword(rs.getString("password"));
-                account.setDisplay(rs.getString("displayName"));
+                account.setDisplayname(rs.getString("displayName"));
                 account.setAddress(rs.getString("address"));
                 account.setEmail(rs.getString("email"));
                 account.setPhone(rs.getString("phone"));
+                account.setGid(rs.getInt("gid"));
                 return account;
             }
             
@@ -62,11 +63,7 @@ public class AccountDBContext extends DBContext{
         }
         return -1;
     }
-    public static void main(String[] args) {
-        AccountDBContext db = new AccountDBContext();
-        Account a = db.getAccoun("huy", "12345");
-        System.out.println(a);
-    }
+   
     
     public Account checkAccountExist(String username)
     {
@@ -80,7 +77,7 @@ public class AccountDBContext extends DBContext{
                 Account account = new Account();
                 account.setUsername(rs.getString("username"));
                 account.setPassword(rs.getString("password"));
-                account.setDisplay(rs.getString("displayName"));
+                account.setDisplayname(rs.getString("displayName"));
                 account.setAddress(rs.getString("address"));
                 account.setEmail(rs.getString("email"));
                 account.setPhone(rs.getString("phone"));

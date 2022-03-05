@@ -12,7 +12,7 @@ package model;
 public class Order {
     private int id;
     private String username;
-    private double totalPrice;
+    private int totalPrice;
     private String note;
     private String createdDate;
     private int shippingId;
@@ -35,11 +35,11 @@ public class Order {
 
    
 
-    public double getTotalPrice() {
+    public int getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
+    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 

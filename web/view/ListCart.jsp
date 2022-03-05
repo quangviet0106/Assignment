@@ -32,7 +32,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Trang Chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào</a></li>
+                        <c:if test="${sessionScope.account !=null}">
+                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào ${sessionScope.account.displayname}! </a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.account ==null}">
+                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào! </a></li>
+                        </c:if>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thương hiệu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -59,12 +64,19 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                         </form>
-                        <form action="login" method="POST">
-                            <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
-                        </form>
-                        <form action="signup" method="POST">
-                            <button class="btn btn-outline-primary ms-lg-2">Đăng Ký</button>
-                        </form>
+                        <c:if test="${sessionScope.account !=null}">
+                            <form action="logout" method="GET">
+                                    <button class="btn btn-outline-primary ms-lg-2">Đăng Xuất</button>
+                            </form>
+                        </c:if>
+                        <c:if test="${sessionScope.account ==null}">
+                            <form action="login" method="GET">
+                                    <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
+                            </form>
+                            <form action="signup" method="GET">
+                                    <button class="btn btn-outline-primary ms-lg-2">Đăng Ký</button>
+                            </form>
+                        </c:if>
                 </div>
             </div>
         </nav>
@@ -102,9 +114,9 @@
                                 <th scope="row"><%=detail.getProduct().getPname()%></th>
                                 <td><%=detail.getProduct().getPcolor()%></td>
                                 <td><%=detail.getProduct().getSize()%></td>
-                                <td><%=detail.getProduct().getPrice()%>00₫</td>
+                                <td><%=detail.getProduct().getPrice()%>₫</td>
                                 <td><input onchange="this.form.submit()" type="number" name="quantity" value="<%=detail.getQuantity()%>"/></td>
-                                <td><%=detail.getTotal()%>00₫</td>
+                                <td><%=detail.getTotal()%>₫</td>
                                 <td><a href="delete-cart?id=<%=detail.getProduct().getPid()%>" class="btn btn-outline-danger"><i class="bi bi-trash3"></i>Delete</a></td>
                               </tr>
                             </form>
@@ -117,7 +129,7 @@
                     <div class="order_total">
                         <div class="order_total_content text-md-right">
                             <div class="order_total_title">Order Total:</div>
-                            <div class="order_total_amount"><%=cart.getTotal() %>00₫</div>
+                            <div class="order_total_amount"><%=cart.getTotal() %>₫</div>
                         </div>
                     </div>
                     <div class="cart_buttons">

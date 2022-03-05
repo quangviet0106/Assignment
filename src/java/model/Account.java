@@ -16,6 +16,8 @@ public class Account {
     private String address;
     private String email;
     private String phone;
+    private int gid;
+    
 
     public String getUsername() {
         return username;
@@ -33,13 +35,15 @@ public class Account {
         this.password = password;
     }
 
-    public String getDisplay() {
+    public String getDisplayname() {
         return displayname;
     }
 
-    public void setDisplay(String displayname) {
+    public void setDisplayname(String displayname) {
         this.displayname = displayname;
     }
+
+    
 
     public String getAddress() {
         return address;
@@ -65,10 +69,20 @@ public class Account {
         this.phone = phone;
     }
 
+    public int getGid() {
+        return gid;
+    }
+
+    public void setGid(int gid) {
+        this.gid = gid;
+    }
+
     @Override
     public String toString() {
-        return "Account{" + "username=" + username + ", password=" + password + ", displayname=" + displayname + ", address=" + address + ", email=" + email + ", phone=" + phone + '}';
+        return "Account{" + "username=" + username + ", password=" + password + ", displayname=" + displayname + ", address=" + address + ", email=" + email + ", phone=" + phone + ", gid=" + gid + '}';
     }
+
+    
 
     
     

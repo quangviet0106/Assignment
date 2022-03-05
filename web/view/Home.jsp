@@ -31,14 +31,19 @@
         <script src="js/pagger.js" type="text/javascript"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="home">The Socks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="home">Trang Chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào </a></li>
+                        <c:if test="${sessionScope.account !=null}">
+                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào ${sessionScope.account.displayname}! </a></li>
+                        </c:if>
+                        <c:if test="${sessionScope.account ==null}">
+                        <li class="nav-item"><a class="nav-link" href="#!">Xin Chào! </a></li>
+                        </c:if>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Thương hiệu</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -48,9 +53,10 @@
                                 </c:forEach>
                                  
                             </ul>
-                            
                         </li>
-                        
+                        <c:if test="${sessionScope.account.gid==1}">
+                        <li class="nav-item"><a class="nav-link" href="#!">Manager</a></li>
+                        </c:if>
                     </ul>
                     <div class="search-container">
                         <form action="search" method="POST">
@@ -65,13 +71,20 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                         </form>
-                        <form action="login" method="GET">
-                            <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
-                        </form>
-                        <form action="signup" method="GET">
-                            <button class="btn btn-outline-primary ms-lg-2">Đăng Ký</button>
-                        </form>
-                        
+                        <c:if test="${sessionScope.account !=null}">
+                            <form action="logout" method="GET">
+                                    <button class="btn btn-outline-primary ms-lg-2">Đăng Xuất</button>
+                            </form>
+                        </c:if>
+                        <c:if test="${sessionScope.account ==null}">
+                            <form action="login" method="GET">
+                                    <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
+                            </form>
+                            <form action="signup" method="GET">
+                                    <button class="btn btn-outline-primary ms-lg-2">Đăng Ký</button>
+                            </form>
+                        </c:if>
+  
                 </div>
             </div>
         </nav>
@@ -100,7 +113,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder"><a href="details?pid=<%=p.getPid()%>" title="View Product"><%=p.getPname()%></a></h5>
                                     <!-- Product price-->
-                                    <%=p.getPrice()%>00₫
+                                    <%=p.getPrice()%>₫
                                 </div>
                             </div>
                             <!-- Product actions-->

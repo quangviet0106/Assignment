@@ -13,9 +13,9 @@ public class CartDetail {
     private Product product;
     private Cart order;
     private int quantity;
-    private double Price;
+    private int Price;
     
-    public double getTotal()
+    public int getTotal()
     {
         return quantity * Price;
     }
@@ -44,11 +44,11 @@ public class CartDetail {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return Price;
     }
 
-    public void setPrice(double Price) {
+    public void setPrice(int Price) {
         this.Price = Price;
     }
     

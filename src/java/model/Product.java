@@ -14,7 +14,7 @@ public class Product {
     private String pname;
     private String pdescription;
     private String pimage;
-    private double price;
+    private int price;
     private String pcolor;
     private Category cate;
     private int size;
@@ -52,11 +52,11 @@ public class Product {
         this.pimage = pimage;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

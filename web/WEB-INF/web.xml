@@ -52,6 +52,14 @@
         <servlet-name>SignUpController</servlet-name>
         <servlet-class>controller.Login.SignUpController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogOutController</servlet-name>
+        <servlet-class>controller.Login.LogOutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerController</servlet-name>
+        <servlet-class>controller.ManagerController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -103,6 +111,14 @@
     <servlet-mapping>
         <servlet-name>SignUpController</servlet-name>
         <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerController</servlet-name>
+        <url-pattern>/manager</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

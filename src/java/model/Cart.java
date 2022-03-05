@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class Cart {
     private ArrayList<CartDetail> details = new ArrayList<>();
     
-    public float getTotal()
+    public int getTotal()
     {
-        float sum = 0;
+        int sum = 0;
         for (CartDetail detail : details) {
             sum+= detail.getTotal();
         }

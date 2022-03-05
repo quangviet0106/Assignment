@@ -22,7 +22,7 @@ public class OrderDBContext extends DBContext{
     public int createOrder(Order order) {
        try {
             String sql = "INSERT INTO [dbo].[Orders]\n" 
-                            +"           ([account_id]\n" 
+                            +"           ([username]\n" 
                             +"           ,[totalPrice]\n" 
                             +"           ,[note]\n" 
                             +"           ,[shipping_id])\n" 

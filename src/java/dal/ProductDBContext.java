@@ -38,7 +38,7 @@ public class ProductDBContext extends DBContext {
             pr.setPname(rs.getString(2));
             pr.setPdescription(rs.getString(3));
             pr.setPimage(rs.getString(4));
-            pr.setPrice(rs.getDouble(5));
+            pr.setPrice(rs.getInt(5));
             pr.setPcolor(rs.getString(6));
             pr.setSize(rs.getInt(7));
             pr.setQuantity(rs.getInt(8));
@@ -65,7 +65,7 @@ public class ProductDBContext extends DBContext {
             pr.setPname(rs.getString("pname"));
             pr.setPdescription(rs.getString("pdescription"));
             pr.setPimage(rs.getString("pimage"));
-            pr.setPrice(rs.getDouble("price"));
+            pr.setPrice(rs.getInt("price"));
             pr.setPcolor(rs.getString("pcolor"));
             pr.setQuantity(rs.getInt("size"));
             pr.setQuantity(rs.getInt("pquantity"));
@@ -89,7 +89,7 @@ public class ProductDBContext extends DBContext {
             pr.setPname(rs.getString(2));
             pr.setPdescription(rs.getString(3));
             pr.setPimage(rs.getString(4));
-            pr.setPrice(rs.getDouble(5));
+            pr.setPrice(rs.getInt(5));
             pr.setPcolor(rs.getString(6));
             pr.setSize(rs.getInt(7));
             pr.setQuantity(rs.getInt(8));
@@ -114,7 +114,7 @@ public class ProductDBContext extends DBContext {
             pr.setPname(rs.getString(2));
             pr.setPdescription(rs.getString(3));
             pr.setPimage(rs.getString(4));
-            pr.setPrice(rs.getDouble(5));
+            pr.setPrice(rs.getInt(5));
             pr.setPcolor(rs.getString(6));
             pr.setQuantity(rs.getInt(9));
            

@@ -20,7 +20,11 @@ function pagger(id, pageindex, totalpage,gap)
     }
     
     // generate span for pageindex
-    result += '<span>'+pageindex+'</span>';
+    
+        result += '<span>'+pageindex+'</span>';
+    
+    
+    
     
     for(var i = pageindex +1; i <= pageindex+gap ; i++)
     {
