@@ -21,7 +21,7 @@ import model.Product;
  *
  * @author Admin
  */
-public class ManagerProductController extends HttpServlet {
+public class InsertProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,24 +35,7 @@ public class ManagerProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        CategoryDBContext dbCategory = new CategoryDBContext();
-        ArrayList<Category> categorys = dbCategory.getCategory();
-        request.setAttribute("category", categorys);
-        ProductDBContext dbProduct = new ProductDBContext();
-        String raw_page = request.getParameter("page");
-        if(raw_page ==null || raw_page.trim().length() ==0)
-            raw_page = "1";
-        int pageindex = Integer.parseInt(raw_page);
-        int pagesize = 8;
-        ArrayList<Product> products = dbProduct.getProducts(pageindex,pagesize);
-        int totalrecords = dbProduct.count();
-        int totalpage = (totalrecords%pagesize ==0)?totalrecords/pagesize
-                :(totalrecords/pagesize)+1;
-        request.setAttribute("product", products);
-        request.setAttribute("totalpage", totalpage);
-        request.setAttribute("pageindex", pageindex);
-        request.setAttribute("pagesize", pagesize);
-        request.getRequestDispatcher("view/ManagerProduct.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -67,7 +50,10 @@ public class ManagerProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        CategoryDBContext dbCategory = new CategoryDBContext();
+        ArrayList<Category> categorys = dbCategory.getCategory();
+        request.setAttribute("category", categorys);
+        request.getRequestDispatcher("view/InsertProduct.jsp").forward(request, response);
     }
 
     /**
@@ -81,7 +67,36 @@ public class ManagerProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        String name = request.getParameter("name");
+        String image = request.getParameter("image");
+        int price = Integer.parseInt(request.getParameter("price"));
+        String color = request.getParameter("color");
+        int size = Integer.parseInt(request.getParameter("size"));
+        String description = request.getParameter("description");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        
+        Category c = new Category();
+        c.setCid(cid);
+        Product p = new Product();
+        p.setPid(pid);
+        p.setPname(name);
+        p.setPdescription(description);
+        p.setPimage(image);
+        p.setPrice(price);
+        p.setPcolor(color);
+        p.setSize(size);
+        p.setQuantity(quantity);
+        p.setCate(c);
+        
+        ProductDBContext dbProduct = new ProductDBContext();
+        dbProduct.InsertProduct(p);
+        response.sendRedirect("manager");
+        
+        
     }
 
     /**

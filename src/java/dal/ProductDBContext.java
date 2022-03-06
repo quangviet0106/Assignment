@@ -152,5 +152,66 @@ public class ProductDBContext extends DBContext {
         }
         
     }
+    public void InsertProduct(Product p ){
+        try {
+            String sql = "INSERT INTO [dbo].[Product]\n" +
+                    "           ([pid]\n" +
+                    "           ,[pname]\n" +
+                    "           ,[pdescription]\n" +
+                    "           ,[pimage]\n" +
+                    "           ,[price]\n" +
+                    "           ,[pcolor]\n" +
+                    "           ,[size]\n" +
+                    "           ,[pquantity]\n" +
+                    "           ,[cid])\n" +
+                    "     VALUES\n" +
+                    "           (?,?,?,?,?,?,?,?,?)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, p.getPid());
+            stm.setString(2, p.getPname());
+            stm.setString(3, p.getPdescription());
+            stm.setString(4, p.getPimage());
+            stm.setInt(5, p.getPrice());
+            stm.setString(6, p.getPcolor());
+            stm.setInt(7, p.getSize());
+            stm.setInt(8, p.getQuantity());
+            stm.setInt(9, p.getCate().getCid());
+            stm.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+                
+    }
+
+    public void UpdateProduct(Product p) {
+        try {
+            String sql = "UPDATE [dbo].[Product]\n" +
+                    "   SET "+
+                    "      [pname] = ?\n" +
+                    "      ,[pdescription] = ?\n" +
+                    "      ,[pimage] = ?\n" +
+                    "      ,[price] = ?\n" +
+                    "      ,[pcolor] = ?\n" +
+                    "      ,[size] = ?\n" +
+                    "      ,[pquantity] = ?\n" +
+                    "      ,[cid] = ?\n" +
+                    " WHERE [pid] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, p.getPname());
+            stm.setString(2, p.getPdescription());
+            stm.setString(3, p.getPimage());
+            stm.setInt(4, p.getPrice());
+            stm.setString(5, p.getPcolor());
+            stm.setInt(6, p.getSize());
+            stm.setInt(7, p.getQuantity());
+            stm.setInt(8, p.getCate().getCid());
+            stm.setInt(9, p.getPid());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
 

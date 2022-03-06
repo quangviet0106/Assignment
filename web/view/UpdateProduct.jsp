@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ManagerProduct
-    Created on : Mar 6, 2022, 12:01:46 PM
+    Document   : UpdateProduct
+    Created on : Mar 6, 2022, 3:07:41 PM
     Author     : Admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,17 +12,6 @@
         <title>The Socks</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link href="css/styles.css" rel="stylesheet" />
-        <style>
-            img{
-                width: 200px;
-                height: 120px;
-            }
-        </style>
-        <%
-            Integer totalpage = (Integer)request.getAttribute("totalpage");
-            Integer pageindex = (Integer)request.getAttribute("pageindex");
-        %>
-        <script src="js/paggerManagerProduct.js" type="text/javascript"></script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
@@ -83,57 +72,57 @@
             </div>
         </nav>
         <div class="container mt-5">
-            <div class="table-wrapper">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h2>Manage <b>Product</b></h2>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="addproduct"  class="btn btn-success" data-toggle="modal"><span>Add New Product</span></a>						
-                        </div>
-                    </div>
-                </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Image</th>
-                            <th>Price</th>
-                            <th>Color</th>
-                            <th>Size</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${product}" var="p">
-                            <tr>
-                                <td>${p.pid}</td>
-                                <td>${p.pname}</td>
-                                <td>
-                                    <img src="${p.pimage}">
-                                </td>
-                                <td>${p.price}</td>
-                                <td>${p.pcolor}</td>
-                                <td>${p.size}</td>
-                                <td>
-                                    <a href="editproduct?pid=${p.pid}"  class="edit" data-toggle="modal">Edit</a>
-                                    <a href="deleteproduct?pid=${p.pid}" class="delete" data-toggle="modal">Delete</a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-                <div id="pagger" class="container-pagging" style="text-align:center"> </div>
-                <script>
-                    paggerManager('pagger',<%=pageindex%>,<%=totalpage%>,1);
-                </script>
+            <div class="table-title">
+                <h2>Update <b>Product</b></h2>
             </div>
-            <a href="home"><button type="button" class="btn btn-primary mb-2">Back to home</button>
-            </a>
-        </div>
-           
+            <form action="editproduct" method="POST">
+                <div class="modal-body" style="width: 500px">
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input value="${updateproduct.pid}"name="pid" type="hidden" class="form-control" readonly required>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input value="${updateproduct.pname}"name="name" type="text" class="form-control" required>
+                    </div>
+                   <div class="form-group">
+                        <label>Image</label>
+                        <input value="${updateproduct.pimage}"name="image" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input value="${updateproduct.price}"name="price" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input value="${updateproduct.pcolor}"name="color" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Size</label>
+                        <input value="${updateproduct.size}"name="size" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input value="${updateproduct.quantity}"name="quantity" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" class="form-control" required>${updateproduct.pdescription}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                            <select name="cid" class="form-select" aria-label="Default select example">
+                                <c:forEach items="${category}"var="c">
+                                    <option value="${c.cid}">${c.cname}</option>
+                                </c:forEach>
+                            </select>
+                        </div>    
+                </div>
+                <div class="modal-footer" style="width: 500px">
+                    <input type="submit" class="btn btn-success" value="Update">
+                </div>
+            </form>
+         </div>
         <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>
@@ -147,6 +136,6 @@
                     
             </div>
         </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>                    
     </body>
 </html>
