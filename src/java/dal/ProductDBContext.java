@@ -141,5 +141,16 @@ public class ProductDBContext extends DBContext {
         }
         return -1;
     }
+    public void DeleteProduct(int pid){
+        try {
+            String sql = "DELETE  from Product where pid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, pid);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }
 

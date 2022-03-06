@@ -1,37 +1,31 @@
 <%-- 
-    Document   : Home
-    Created on : Feb 11, 2022, 6:22:14 PM
-    Author     : DELL
+    Document   : ManagerProduct
+    Created on : Mar 6, 2022, 12:01:46 PM
+    Author     : Admin
 --%>
-
-<%@page import="model.Account"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="model.Category"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>The Socks</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link href="css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-        <% 
-            ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("product");
+        <style>
+            img{
+                width: 200px;
+                height: 120px;
+            }
+        </style>
+        <%
             Integer totalpage = (Integer)request.getAttribute("totalpage");
             Integer pageindex = (Integer)request.getAttribute("pageindex");
-            
         %>
-        <script src="js/pagger.js" type="text/javascript"></script>
+        <script src="js/paggerManagerProduct.js" type="text/javascript"></script>
     </head>
     <body>
-          <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="home">The Socks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -55,8 +49,7 @@
                             </ul>
                         </li>
                         <c:if test="${sessionScope.account.gid==1}">
-                        <li class="nav-item"><a class="nav-link" href="manager">Manager</a></li>
-                        
+                        <li class="nav-item"><a class="nav-link" href="#!">Manager</a></li>
                         </c:if>
                     </ul>
                     <div class="search-container">
@@ -89,55 +82,57 @@
                 </div>
             </div>
         </nav>
-        <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-4 px-lg-5 my-5">
-                <div class="text-center text-white">
-                    <div class="breadcrumb-overlay"></div>
-                    <h1 class="display-4 fw-bolder">Shop Quang Việt</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">Uy tín - Chất lượng cao</p>
-                </div>
-
-            </div>
-        </header>
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <% for (Product p : products) {%>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="<%=p.getPimage()%>" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"><a href="details?pid=<%=p.getPid()%>" title="View Product"><%=p.getPname()%></a></h5>
-                                    <!-- Product price-->
-                                    <%=p.getPrice()%>₫
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <form action="addcart" method="POST"> 
-                                        <input type="hidden" name="id" value="<%=p.getPid()%>" /> 
-                                        <input id = "cart" type="submit" value="Add to cart"/> 
-                                    </form>
-                                    
-                                </div>
-                            </div>
+        <div class="container mt-5">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Manage <b>Product</b></h2>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><span>Add New Product</span></a>						
                         </div>
                     </div>
-                    <%}%>
                 </div>
-            <div id="paggerbot" class="container-pagging" style="text-align:center"> </div>
-        <script>
-            pagger('paggerbot',<%=pageindex%>,<%=totalpage%>,1);
-        </script>     
-        </section>
-              
-        <!-- Footer-->
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Color</th>
+                            <th>Size</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${product}" var="p">
+                            <tr>
+                                <td>${p.pid}</td>
+                                <td>${p.pname}</td>
+                                <td>
+                                    <img src="${p.pimage}">
+                                </td>
+                                <td>${p.price}</td>
+                                <td>${p.pcolor}</td>
+                                <td>${p.size}</td>
+                                <td>
+                                    <a href="#editEmployeeModal"  class="edit" data-toggle="modal">Edit</a>
+                                    <a href="delete?pid=${p.pid}" class="delete" data-toggle="modal">Delete</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <div id="pagger" class="container-pagging" style="text-align:center"> </div>
+                <script>
+                    paggerManager('pagger',<%=pageindex%>,<%=totalpage%>,1);
+                </script>
+            </div>
+            <a href="#"><button type="button" class="btn btn-primary mb-2">Back to home</button>
+            </a>
+        </div>
         <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>
@@ -151,9 +146,6 @@
                     
             </div>
         </footer>
-        <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        
     </body>
 </html>

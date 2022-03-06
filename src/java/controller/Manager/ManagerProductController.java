@@ -3,20 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.Manager;
 
+import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class ManagerController extends HttpServlet {
+public class ManagerProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,18 +33,21 @@ public class ManagerController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ManagerController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ManagerController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        ProductDBContext dbProduct = new ProductDBContext();
+        String raw_page = request.getParameter("page");
+        if(raw_page ==null || raw_page.trim().length() ==0)
+            raw_page = "1";
+        int pageindex = Integer.parseInt(raw_page);
+        int pagesize = 8;
+        ArrayList<Product> products = dbProduct.getProducts(pageindex,pagesize);
+        int totalrecords = dbProduct.count();
+        int totalpage = (totalrecords%pagesize ==0)?totalrecords/pagesize
+                :(totalrecords/pagesize)+1;
+        request.setAttribute("product", products);
+        request.setAttribute("totalpage", totalpage);
+        request.setAttribute("pageindex", pageindex);
+        request.setAttribute("pagesize", pagesize);
+        request.getRequestDispatcher("view/ManagerProduct.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
