@@ -5,6 +5,7 @@
  */
 package controller.Manager;
 
+import controller.Login.BaseAuthenticationController;
 import dal.CategoryDBContext;
 import dal.ProductDBContext;
 import java.io.IOException;
@@ -21,7 +22,7 @@ import model.Product;
  *
  * @author Admin
  */
-public class UpdateProductController extends HttpServlet {
+public class UpdateProductController extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -59,7 +60,7 @@ public class UpdateProductController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> categorys = dbCategory.getCategory();
@@ -81,7 +82,7 @@ public class UpdateProductController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");

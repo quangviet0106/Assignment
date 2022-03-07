@@ -42,6 +42,8 @@ public class DetailsController extends HttpServlet {
         ProductDBContext dbProduct = new ProductDBContext();
         Product product = dbProduct.getProductByID(id);
         request.setAttribute("detail",product);
+        ArrayList<Product> p = dbProduct.getNewProducts();
+        request.setAttribute("newproducts", p);
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);

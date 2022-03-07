@@ -38,22 +38,22 @@ public class DeleteCartController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession session = request.getSession();
-        Cart cart = (Cart) session.getAttribute("carts");
-        int id = Integer.parseInt(request.getParameter("id"));
-        ProductDBContext dbProduct = new ProductDBContext();
-        Product product = dbProduct.getProductByID(id);
-        if(cart == null){
-            cart = new Cart();
-        }
-        for (CartDetail detail  : cart.getDetails()) {
-            if(detail.getProduct().getPid() == product.getPid()){
-                cart.getDetails().remove(detail.getProduct());
-                break;
-            }
-        }
+       HttpSession session = request.getSession();
+       Cart cart = (Cart) session.getAttribute("carts");
+       int pid = Integer.parseInt(request.getParameter("pid"));
+       ProductDBContext db = new ProductDBContext();
+       Product product = db.getProductByID(pid);
+       if(cart == null){
+           cart = new Cart();
+       }else{
+           for (CartDetail detail : cart.getDetails()) {
+               if(detail.getProduct().getPid() == product.getPid()){
+                   cart.getDetails().remove(detail.getProduct().getPid());
+                   break;
+               }
+           }
+       }
         
-      
         session.setAttribute("carts", cart);
         response.sendRedirect("listcart");
     }

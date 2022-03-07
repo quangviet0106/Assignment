@@ -115,16 +115,43 @@
                                 <i class="bi-cart-fill me-1"></i>
                                 Thêm vào giỏ hàng
                             </button>
-                            </form>
-                            <button class="btn btn-outline-dark flex-shrink-0 ms-2" type="button">
-                                <i>Mua Ngay</i>
-                                
-                            </button>
+                            </form>                        
                         </div>
                     </div>
                 </div>
             </div>
-             
+            
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2>Những sản phẩm mới nhất</h2>  
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <c:forEach items="${newproducts}" var="p">
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="${p.pimage}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder"><a href="details?pid=${p.pid}" title="View Product">${p.pname}</a></h5>
+                                    <!-- Product price-->
+                                    ${p.price}₫
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <form action="addcart" method="POST"> 
+                                        <input type="hidden" name="id" value="${p.pid}" /> 
+                                        <input id = "cart" type="submit" value="Add to cart"/> 
+                                    </form>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </c:forEach>
+                </div>
         </section>            
                  <footer class="py-5 bg-dark">
             <div class="contact text-white">

@@ -107,7 +107,7 @@ public abstract class BaseAuthenticationController extends HttpServlet {
             throws ServletException, IOException {
         if (isAuthenticated(request)) {
             //process business
-            processPost(request, response);
+            processGet(request, response);
         } else {
             response.sendRedirect("login");
         }

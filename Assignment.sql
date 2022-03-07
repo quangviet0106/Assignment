@@ -132,7 +132,7 @@ INSERT INTO [dbo].[Category]([cid],[cname])VALUES (3,'Uniqlo')
 INSERT INTO [dbo].[Category]([cid],[cname])VALUES (4,'Jordan')
 INSERT INTO [dbo].[Category]([cid],[cname])VALUES (5,'Pirates Sock')
 
-select * from Product
+
 INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
 VALUES(1,N'Tất Cổ Chân Chạy Bộ Performance',N'TẤT CỔ CHÂN CHẠY BỘ PERFORMANCEĐÔI. TẤT CHẠY BỘ HIỆU NĂNG CAO CÓ SỬ DỤNG CHẤT LIỆU TÁI CHẾ.Cảm giác khó chịu lúc xuất phát sẽ thành ra không thể chịu nổi khi về đích. Tận hưởng sự thoải mái không chút phân tâm trên từng bước chạy nhờ chất vải mỏng, ôm và co giãn của đôi tất adidas này. Công nghệ HEAT.RDY tăng cường lưu thông khí tối đa, cùng đường may phẳng ở phần mũi chân giúp tránh cọ xát. Làm từ một nhóm chất liệu tái chế và có chứa ít nhất 60% thành phần tái chế, sản phẩm này đại diện cho một trong số rất nhiều các giải pháp của chúng tôi hướng tới chấm dứt rác thải nhựa.',N'https://2.pik.vn/202222fd5e04-f3b7-4bf2-bf13-e776ea9d8494.jpg',28000,N'Trắng',39,100,1)
 INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
@@ -167,6 +167,22 @@ Với tinh thần vui vẻ, tích cực, lạc quan, lấy cảm hứng từ pho
 INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
 VALUES(14,N'Tất cổ dài Pirate Socks Street Fighter Pack',N'Tất cổ dài Street Fighter là một trong những thiết kế mới nhất đến từ thương hiệu Pirate Socks với cảm hứng được lấy từ tựa game gắn liền với tuổi thơ của rất nhiều những bạn trẻ 8x, 9x Việt Nam.
 Với tinh thần vui vẻ, tích cực, lạc quan, lấy cảm hứng từ phong cách streetwear hơi hướng sportwear và hip-hop, Pirate Socks là thương hiệu tất thời trang nổi tiếng tại Việt Nam từ năm 2017 với các sản phẩm bít tất, vớ đầy cá tính và chất lượng tốt.',N'https://i.imgur.com/kMGKPeq.jpg',20000,N'Trắng',41,100,5)
-
+INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
+VALUES(15,N'Tất Lười 3 Đôi (Vải Pile Mắt Lưới)',N'Tất làm từ vải nhung len tạo cảm giác thoải mái. Cũng có thể được sử dụng như tất thể thao.',N'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/439026/item/goods_09_439026.jpg?width=1600&impolicy=quality_75',30000,N'Đen',39,150,3)
+INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
+VALUES(16,N'Tất Cổ Ngắn 3 Đôi (Gân)',N'Tất gân vừa vặn tuyệt vời.Thoải mái và dễ phối với giày thể thao.',N'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/439019/item/goods_01_439019.jpg?width=1600&impolicy=quality_75',35000,N'Trắng,Nâu,Xanh',37,200,3)
+INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
+VALUES(17,N'Tất Cổ Ngắn 3 Đôi (Gân)',N'Tất gân vừa vặn tuyệt vời.Thoải mái và dễ phối với giày thể thao.',N'https://image.uniqlo.com/UQ/ST3/AsianCommon/imagesgoods/439019/item/goods_09_439019.jpg?width=1600&impolicy=quality_75',35000,N'Đen',39,200,3)
+INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
+VALUES(18,N'BỘ 3 ĐÔI TẤT CỔ THẤP',N'BỘ BA ĐÔI TẤT ẨN CHO CẢM GIÁC DỄ CHỊU.
+Đảm bảo cho đôi chân bạn luôn thoải mái trên sân golf là điều tối quan trọng. Mẫu tất cổ thấp adidas này chính là giải pháp hoàn hảo. Bất kể bạn đang chinh phục fairway hay nỗ lực giảm số gậy putt, hãy tập trung vào từng cú đánh nhờ sự kết hợp hoàn hảo giữa độ nâng đỡ và êm ái.',N'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/5f9eeba77f3a4ac59cf1aca60117e80a_9366/Bo_3_djoi_tat_co_thap_trang_GJ7327_03_standard.jpg',40000,N'Trắng',38,100,1)
+INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
+VALUES(19,N'TẤT CAO CỔ TÁI CHẾ ADIDAS X UB22',N'ĐÔI TẤT CHẠY BỘ SIÊU THOẢI MÁI CÓ SỬ DỤNG SỢI PARLEY OCEAN PLASTIC.
+Đôi tất tuyệt vời nhất sẽ khiến bạn quên mất rằng mình đang mang tất. Chính vì vậy đôi tất chạy bộ adidas này sử dụng công nghệ HEAT.RDY giúp đôi chân bạn luôn mát mẻ, đường may phẳng ở mũi chân giảm thiểu cọ xát, tăng cường nâng đỡ vòm bàn chân và công nghệ FORMOTION linh hoạt theo cấu trúc bàn chân. Chỉ là tất chân thôi mà có thật nhiều công nghệ phải không? Đúng vậy.',N'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/643c57673f6d42dcb29cada0010a4d99_9366/Tat_Cao_Co_Tai_Che_adidas_x_UB22_trang_HA0109_03_standard.jpg',42000,N'Trắng',38,200,1)
+INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
+VALUES(20,N'TẤT CỔ CHÂN TOUR 360',N'ĐÔI TẤT GOLF CÓ VÂN BÁM, SỬ DỤNG CHẤT LIỆU TÁI CHẾ.
+Nâng niu đôi chân bạn y như golf thủ chuyên nghiệp với đôi tất golf cổ chân adidas này. Thiết kế bó cơ nâng đỡ vòm bàn chân và phần gót chân lót đệm đảm bảo cảm giác thoải mái khi di chuyển suốt 18 lỗ và hơn thế nữa. Chất vải lưới thoáng khí tăng cường thoáng mát. Vân bám dập nổi ở lòng bàn chân cho độ ôm cố định khi bạn vung gậy và xoay người trong suốt vòng golf.',N'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/f350498d7ed3424bb313ad800144f9f4_9366/Tat_Co_Chan_Tour_360_trang_HB3670_03_standard.jpg',45000,N'Trắng',36,150,1)
+INSERT INTO [dbo].[Product] ([pid],[pname],[pdescription],[pimage],[price],[pcolor],[size],[pquantity],[cid])
+VALUES(21,N'Tất thể thao Jordan Jumpman No-Show Socks Trắng Pack 3',N'Được làm từ chất liệu vải cao cấp, mềm mịn. Kháng khuẩn, khử mùi, thấm hút mồ hôi nhanh, co giãn tốt.',N'https://sneakerdaily.vn/wp-content/uploads/2021/09/Thiet-ke-khong-ten-23-1.png',35000,N'Trắng',37,20000,4)
 
 

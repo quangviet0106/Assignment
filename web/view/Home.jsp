@@ -102,6 +102,7 @@
         </header>
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
+                <h1>All Products</h1>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <% for (Product p : products) {%>
                     <div class="col mb-5">
@@ -131,6 +132,7 @@
                     </div>
                     <%}%>
                 </div>
+            </div>
             <div id="paggerbot" class="container-pagging" style="text-align:center"> </div>
         <script>
             pagger('paggerbot',<%=pageindex%>,<%=totalpage%>,1);

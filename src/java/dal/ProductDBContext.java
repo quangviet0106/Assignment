@@ -52,6 +52,33 @@ public class ProductDBContext extends DBContext {
         }
         return products;
     }
+    public ArrayList<Product> getNewProducts(){
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "Select top 4* from Product order by pid desc";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            
+            ResultSet rs = stm.executeQuery();
+        while(rs.next()){
+            Product pr = new Product();
+            pr.setPid(rs.getInt(1));
+            pr.setPname(rs.getString(2));
+            pr.setPdescription(rs.getString(3));
+            pr.setPimage(rs.getString(4));
+            pr.setPrice(rs.getInt(5));
+            pr.setPcolor(rs.getString(6));
+            pr.setSize(rs.getInt(7));
+            pr.setQuantity(rs.getInt(8));
+            Category c = new Category();
+            c.setCid(rs.getInt(9));
+            pr.setCate(c);
+            products.add(pr);
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return products;
+    }
     public ArrayList<Product> getProductByCategory(int cid){
         ArrayList<Product> products = new ArrayList<>();
         try {
@@ -213,5 +240,6 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 }
 
