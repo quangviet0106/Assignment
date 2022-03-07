@@ -1,9 +1,8 @@
 <%-- 
-    Document   : Home
-    Created on : Feb 11, 2022, 6:22:14 PM
-    Author     : DELL
+    Document   : SearchProductByCategory
+    Created on : Mar 7, 2022, 6:23:36 PM
+    Author     : Admin
 --%>
-
 <%@page import="model.Account"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.Category"%>
@@ -15,23 +14,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>The Socks</title>
-        <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-        <% 
-            ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("product");
-            Integer totalpage = (Integer)request.getAttribute("totalpage");
-            Integer pageindex = (Integer)request.getAttribute("pageindex");
-            
-        %>
-        <script src="js/pagger.js" type="text/javascript"></script>
+        
     </head>
     <body>
-          <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="home">The Socks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -102,28 +94,27 @@
         </header>
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
-                <h1>All Products<span style="font-size: 25px ; color: #bcbebf">(${requestScope.count} sản phẩm)</span></h1>
-                
+                <h1>${categorybyid.cname}<span style="font-size: 25px ; color: #bcbebf">(${requestScope.counts} sản phẩm)</span></h1>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <% for (Product p : products) {%>
+                    <c:forEach items="${product}" var="p">
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="<%=p.getPimage()%>" alt="..." />
+                            <img class="card-img-top" src="${p.pimage}" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"><a href="details?pid=<%=p.getPid()%>" title="View Product"><%=p.getPname()%></a></h5>
+                                    <h5 class="fw-bolder"><a href="details?pid=${p.pid}" title="View Product">${p.pname}</a></h5>
                                     <!-- Product price-->
-                                    <%=p.getPrice()%>₫
+                                    ${p.price}
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
                                     <form action="addcart" method="POST"> 
-                                        <input type="hidden" name="id" value="<%=p.getPid()%>" /> 
+                                        <input type="hidden" name="id" value="${p.pid}" /> 
                                         <input id = "cart" type="submit" value="Add to cart"/> 
                                     </form>
                                     
@@ -131,13 +122,9 @@
                             </div>
                         </div>
                     </div>
-                    <%}%>
+                    </c:forEach>
                 </div>
-            </div>
-            <div id="paggerbot" class="container-pagging" style="text-align:center"> </div>
-        <script>
-            pagger('paggerbot',<%=pageindex%>,<%=totalpage%>,1);
-        </script>     
+            </div>    
         </section>
               
         <!-- Footer-->
@@ -157,6 +144,5 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        
     </body>
 </html>

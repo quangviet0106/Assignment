@@ -42,9 +42,11 @@ public class SearchController extends HttpServlet {
         request.setAttribute("product", product);
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> categorys = dbCategory.getCategory();
+        int countProductBySearchName = dbProduct.countProductBySearchName(searchName);
+        request.setAttribute("countProductBySearchName", countProductBySearchName);
         request.setAttribute("category", categorys);
         request.setAttribute("searchName", searchName);
-        request.getRequestDispatcher("view/Home.jsp").forward(request, response);
+        request.getRequestDispatcher("view/SearchProductByName.jsp").forward(request, response);
         
     }
 

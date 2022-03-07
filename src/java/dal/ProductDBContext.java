@@ -94,8 +94,11 @@ public class ProductDBContext extends DBContext {
             pr.setPimage(rs.getString("pimage"));
             pr.setPrice(rs.getInt("price"));
             pr.setPcolor(rs.getString("pcolor"));
-            pr.setQuantity(rs.getInt("size"));
+            pr.setSize(rs.getInt("size"));
             pr.setQuantity(rs.getInt("pquantity"));
+            Category c = new Category();
+            c.setCid(rs.getInt(9));
+            pr.setCate(c);
             products.add(pr);
         }
         } catch (SQLException ex) {
@@ -120,6 +123,9 @@ public class ProductDBContext extends DBContext {
             pr.setPcolor(rs.getString(6));
             pr.setSize(rs.getInt(7));
             pr.setQuantity(rs.getInt(8));
+            Category c = new Category();
+            c.setCid(rs.getInt(9));
+            pr.setCate(c);
             return pr;
             
         }
@@ -144,7 +150,9 @@ public class ProductDBContext extends DBContext {
             pr.setPrice(rs.getInt(5));
             pr.setPcolor(rs.getString(6));
             pr.setQuantity(rs.getInt(9));
-           
+            Category c = new Category();
+            c.setCid(rs.getInt(9));
+            pr.setCate(c);
             
             products.add(pr);
         }
@@ -168,6 +176,38 @@ public class ProductDBContext extends DBContext {
         }
         return -1;
     }
+    public int countProductByCategory(int cid)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, cid);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+    public int countProductBySearchName(String searchName)
+    {
+        try {
+            String sql = "Select COUNT(*) as Total  from Product where pname like ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, "%"+searchName+"%");
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
     public void DeleteProduct(int pid){
         try {
             String sql = "DELETE  from Product where pid = ?";
@@ -179,6 +219,7 @@ public class ProductDBContext extends DBContext {
         }
         
     }
+    
     public void InsertProduct(Product p ){
         try {
             String sql = "INSERT INTO [dbo].[Product]\n" +

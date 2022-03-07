@@ -50,6 +50,8 @@ public class HomeController extends HttpServlet {
         int totalrecords = dbProduct.count();
         int totalpage = (totalrecords%pagesize ==0)?totalrecords/pagesize
                 :(totalrecords/pagesize)+1;
+        int count = dbProduct.count();
+        request.setAttribute("count", count);
         request.setAttribute("product", products);
         request.setAttribute("totalpage", totalpage);
         request.setAttribute("pageindex", pageindex);

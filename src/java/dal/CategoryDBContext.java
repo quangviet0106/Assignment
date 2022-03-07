@@ -35,4 +35,22 @@ public class CategoryDBContext extends DBContext{
         }
         return categorys;
     }
+    public Category getCategoryById(int cid){
+        
+        try {
+            String sql = "SELECT * FROM Category where cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, cid);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Category c = new Category();
+                c.setCid(rs.getInt(1));
+                c.setCname(rs.getString(2));
+                return c;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

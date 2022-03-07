@@ -113,7 +113,8 @@
                         <label>Category</label>
                             <select name="cid" class="form-select" aria-label="Default select example">
                                 <c:forEach items="${category}"var="c">
-                                    <option value="${c.cid}">${c.cname}</option>
+                                    <option ${requestScope.updateproduct.cate.cid eq c.cid?"selected=\"selected\"":""}
+                                        value="${c.cid}">${c.cname}</option>
                                 </c:forEach>
                             </select>
                         </div>    

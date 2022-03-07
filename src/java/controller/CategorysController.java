@@ -39,12 +39,16 @@ public class CategorysController extends HttpServlet {
         int cid = Integer.parseInt(request.getParameter("cid"));
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> category = dbCategory.getCategory();
+        Category c = dbCategory.getCategoryById(cid);
+        request.setAttribute("categorybyid", c);
         request.setAttribute("category", category);
         ProductDBContext dbProduct = new ProductDBContext();
         ArrayList<Product> products = dbProduct.getProductByCategory(cid);
+        int countProductByCategory = dbProduct.countProductByCategory(cid);
+        request.setAttribute("counts", countProductByCategory);
         request.setAttribute("product", products);
         request.setAttribute("tag", cid);
-        request.getRequestDispatcher("view/Home.jsp").forward(request, response);
+        request.getRequestDispatcher("view/SearchProductByCategory.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
