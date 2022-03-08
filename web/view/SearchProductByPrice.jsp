@@ -1,9 +1,8 @@
 <%-- 
-    Document   : Home
-    Created on : Feb 11, 2022, 6:22:14 PM
-    Author     : DELL
+    Document   : SearchProductByPrice
+    Created on : Mar 8, 2022, 12:31:12 PM
+    Author     : Admin
 --%>
-
 <%@page import="model.Account"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.Category"%>
@@ -17,14 +16,7 @@
         <title>The Socks</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-        <% 
-            ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("product");
-            Integer totalpage = (Integer)request.getAttribute("totalpage");
-            Integer pageindex = (Integer)request.getAttribute("pageindex");
-            
-        %>
-        <script src="js/pagger.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script>
             function submitForm()
             {
@@ -33,7 +25,7 @@
         </script>
     </head>
     <body>
-          <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="home">The Socks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -109,27 +101,27 @@
                     <form id="searchForm" action="searchprice" method="POST">
                         Mức giá:<br>
                         <input onchange="submitForm()" type="checkbox" name="price1" value="10000"/> Từ 10- 20 nghìn <br>
-                        <input onchange="submitForm()" type="checkbox" name="price2" value="20000"/> Từ 20- 30 nghìn <br>
-                        <input onchange="submitForm()" type="checkbox" name="price3" value="30000"/> Từ 30- 40 nghìn <br>
+                       <input type="checkbox"/> Từ 20- 30 nghìn <br>
+                       <input type="checkbox"/> Từ 30- 40 nghìn <br>
                        <input type="checkbox"/> Trên 40 nghìn 
                     </form>
                    
                 </div>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <% for (Product p : products) {%>
+                    <c:forEach items="${price1}" var="p">
                     <div class="col mb-5">
                         <div class="card h-100">
-                            <img class="card-img-top" src="<%=p.getPimage()%>" alt="..." />
+                            <img class="card-img-top" src="${p.pimage}" alt="..." />
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <h5 class="fw-bolder"><a href="details?pid=<%=p.getPid()%>" title="View Product"><%=p.getPname()%></a></h5>
-                                    <%=p.getPrice()%>₫
+                                    <h5 class="fw-bolder"><a href="details?pid=${p.pid}" title="View Product">${p.pname}</a></h5>
+                                    ${p.price}₫
                                 </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
                                     <form action="addcart" method="POST"> 
-                                        <input type="hidden" name="id" value="<%=p.getPid()%>" /> 
+                                        <input type="hidden" name="id" value="${p.pid}" /> 
                                         <input id = "cart" type="submit" value="Add to cart"/> 
                                     </form>
                                     
@@ -137,13 +129,9 @@
                             </div>
                         </div>
                     </div>
-                    <%}%>
+                    </c:forEach>
                 </div>
-            </div>
-            <div id="paggerbot" class="container-pagging" style="text-align:center"> </div>
-        <script>
-            pagger('paggerbot',<%=pageindex%>,<%=totalpage%>,1);
-        </script>     
+            </div>   
         </section>
         <footer class="py-5 bg-dark">
             <div class="contact text-white">
@@ -159,7 +147,5 @@
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        
-        
     </body>
 </html>

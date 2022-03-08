@@ -72,6 +72,10 @@
         <servlet-name>UpdateProductController</servlet-name>
         <servlet-class>controller.Manager.UpdateProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchProductByPrice</servlet-name>
+        <servlet-class>controller.SearchProductByPriceController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>UpdateProductController</servlet-name>
         <url-pattern>/editproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductByPrice</servlet-name>
+        <url-pattern>/searchprice</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
