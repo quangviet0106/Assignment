@@ -100,10 +100,10 @@
                 <div class="mb-4">
                     <form id="searchForm" action="searchprice" method="POST">
                         Mức giá:<br>
-                        <input onchange="submitForm()" type="checkbox" name="price1" value="10000"/> Từ 10- 20 nghìn <br>
-                       <input type="checkbox"/> Từ 20- 30 nghìn <br>
-                       <input type="checkbox"/> Từ 30- 40 nghìn <br>
-                       <input type="checkbox"/> Trên 40 nghìn 
+                        <input onchange="submitForm()" type="checkbox" name="price1" value="10000"}/> Từ 10- 20 nghìn <br>
+                        <input onchange="submitForm()" type="checkbox" name="price2" value="20000"/> Từ 20- 30 nghìn <br>
+                        <input onchange="submitForm()" type="checkbox" name="price3" value="30000"/> Từ 30- 40 nghìn <br>
+                        <input onchange="submitForm()" type="checkbox" name="price4" value="40000"/> Trên 40 nghìn 
                     </form>
                    
                 </div>

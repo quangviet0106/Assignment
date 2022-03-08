@@ -57,8 +57,13 @@
                             </ul>
                         </li>
                         <c:if test="${sessionScope.account.gid==1}">
-                        <li class="nav-item"><a class="nav-link" href="manager">Manager</a></li>
                         
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manager</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li class="nav-item"><a class="nav-link" href="manager">Manager Product</a></li>
+                            </ul>
+                        </li>
                         </c:if>
                     </ul>
                     <div class="search-container">
@@ -111,7 +116,7 @@
                         <input onchange="submitForm()" type="checkbox" name="price1" value="10000"/> Từ 10- 20 nghìn <br>
                         <input onchange="submitForm()" type="checkbox" name="price2" value="20000"/> Từ 20- 30 nghìn <br>
                         <input onchange="submitForm()" type="checkbox" name="price3" value="30000"/> Từ 30- 40 nghìn <br>
-                       <input type="checkbox"/> Trên 40 nghìn 
+                        <input onchange="submitForm()"  type="checkbox" name="price4" value="40000"/> Trên 40 nghìn 
                     </form>
                    
                 </div>

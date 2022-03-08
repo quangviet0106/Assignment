@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.Manager;
 
-import dal.CategoryDBContext;
-import dal.ProductDBContext;
+import dal.ManagerOrderDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -14,14 +13,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
-import model.Product;
+import model.OrderDetail;
 
 /**
  *
  * @author Admin
  */
-public class SearchProductByPriceController extends HttpServlet {
+public class ManagerOrderDetailsController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,36 +32,11 @@ public class SearchProductByPriceController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        CategoryDBContext dbCategory = new CategoryDBContext();
-        ArrayList<Category> categorys = dbCategory.getCategory();
-        request.setAttribute("category", categorys);
-        String price1 = request.getParameter("price1");
-        String price2 = request.getParameter("price2");
-        String price3 = request.getParameter("price3");
-        String price4 = request.getParameter("price4");
-        ProductDBContext db = new ProductDBContext();
-        int count = 0;
-        ArrayList<Product> product = new ArrayList<>();
-        if(price1 != null){
-            product = db.SearchProductByPrice(price1);
-            count = db.countProductByPrice(price1);
-        }
-        if(price2 != null){
-            product = db.SearchProductByPrice1(price2);
-             count = db.countProductByPrice1(price2);
-        }
-        if(price3 != null){
-            product = db.SearchProductByPrice2(price3);
-             count = db.countProductByPrice2(price3);
-        }
-        if(price4 != null){
-            product = db.SearchProductByPrice3(price4);
-            count = db.countProductByPrice3(price4);
-        }
-        request.setAttribute("count", count);
-        request.setAttribute("price1", product);
-        request.getRequestDispatcher("view/SearchProductByPrice.jsp").forward(request, response);
+        ManagerOrderDBContext db = new ManagerOrderDBContext();
+        ArrayList<OrderDetail> orderdetails = db.getOrderDetail();
+        request.setAttribute("orderdetails", orderdetails);
+        request.getRequestDispatcher("view/ManagerOrderDetail.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -144,7 +144,7 @@
                             <label for="note">Note</label>
                             <textarea class="form-control" id="note" name="note" rows="3"></textarea>
                       </div>
-                        <button type="submit" class="btn btn-primary w-100 mt-5">Submit</button>
+                        <button type="submit" class="btn btn-primary w-100 mt-5">Đặt Hàng</button>
                       </form>
                     </div>
                 </div>

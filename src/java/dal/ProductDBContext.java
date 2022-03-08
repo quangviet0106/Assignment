@@ -32,7 +32,7 @@ public class ProductDBContext extends DBContext {
             stm.setInt(3, pageindex);
             stm.setInt(4, pagesize);
             ResultSet rs = stm.executeQuery();
-        while(rs.next()){
+            while(rs.next()){
             Product pr = new Product();
             pr.setPid(rs.getInt(1));
             pr.setPname(rs.getString(2));
@@ -96,9 +96,6 @@ public class ProductDBContext extends DBContext {
             pr.setPcolor(rs.getString("pcolor"));
             pr.setSize(rs.getInt("size"));
             pr.setQuantity(rs.getInt("pquantity"));
-            Category c = new Category();
-            c.setCid(rs.getInt(9));
-            pr.setCate(c);
             products.add(pr);
         }
         } catch (SQLException ex) {
@@ -353,7 +350,22 @@ public class ProductDBContext extends DBContext {
         }
         return product;
     }
-    
+    public int countProductByPrice1(String price)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where price >= ? AND price <= 30000";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
     public ArrayList<Product> SearchProductByPrice2(String price){
         ArrayList<Product> product = new ArrayList<>();
         try {
@@ -381,6 +393,66 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return product;
+    }
+    public int countProductByPrice2(String price)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where price >= ? AND price <= 40000";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+     public ArrayList<Product> SearchProductByPrice3(String price){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM Product where price > ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product pr = new Product();
+                pr.setPid(rs.getInt(1));
+                pr.setPname(rs.getString(2));
+                pr.setPdescription(rs.getString(3));
+                pr.setPimage(rs.getString(4));
+                pr.setPrice(rs.getInt(5));
+                pr.setPcolor(rs.getString(6));
+                pr.setSize(rs.getInt(7));
+                pr.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                pr.setCate(c);
+                product.add(pr);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+    public int countProductByPrice3(String price)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where price > ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
     }
 }
 
