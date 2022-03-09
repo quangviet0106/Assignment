@@ -23,6 +23,17 @@
             Integer pageindex = (Integer)request.getAttribute("pageindex");
         %>
         <script src="js/paggerManagerProduct.js" type="text/javascript"></script>
+        <script>
+            function deleteProduct(id)
+            {
+                var result = confirm("Are you sure?");
+                if (result)
+                {
+                    window.location.href = "deleteproduct?pid=" + id;
+                }
+            }
+        </script>
+           
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
@@ -52,7 +63,10 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manager</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li class="nav-item"><a class="nav-link" href="manager">Manager Product</a></li>
+                                <li class="nav-item"><a class="nav-link" href="manager">Product</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managerorderdetails">OrderDetail</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managerorder">Order</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managershipping">Shipping</a></li>
                             </ul>
                         </li>
                         </c:if>
@@ -124,7 +138,7 @@
                                 <td>${p.size}</td>
                                 <td>
                                     <a href="editproduct?pid=${p.pid}"  class="edit" data-toggle="modal">Edit</a>
-                                    <a href="deleteproduct?pid=${p.pid}" class="delete" data-toggle="modal">Delete</a>
+                                    <a href="#" onclick="deleteProduct(${p.pid});" class="delete" data-toggle="modal">Delete</a>
                                 </td>
                             </tr>
                         </c:forEach>

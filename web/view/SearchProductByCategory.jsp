@@ -107,7 +107,7 @@
                                     <!-- Product name-->
                                     <h5 class="fw-bolder"><a href="details?pid=${p.pid}" title="View Product">${p.pname}</a></h5>
                                     <!-- Product price-->
-                                    ${p.price}
+                                    ${p.price}₫
                                 </div>
                             </div>
                             <!-- Product actions-->

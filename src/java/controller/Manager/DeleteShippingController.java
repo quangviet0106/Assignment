@@ -6,23 +6,19 @@
 package controller.Manager;
 
 import controller.Login.BaseAuthenticationController;
-import dal.CategoryDBContext;
 import dal.ManagerOrderDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
-import model.OrderDetail;
 
 /**
  *
  * @author Admin
  */
-public class ManagerOrderDetailsController extends BaseAuthenticationController {
+public class DeleteShippingController extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +31,10 @@ public class ManagerOrderDetailsController extends BaseAuthenticationController 
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CategoryDBContext dbCategory = new CategoryDBContext();
-        ArrayList<Category> categorys = dbCategory.getCategory();
-        request.setAttribute("category", categorys);
+        int id = Integer.parseInt(request.getParameter("id"));
         ManagerOrderDBContext db = new ManagerOrderDBContext();
-        ArrayList<OrderDetail> orderdetails = db.getOrderDetail();
-        request.setAttribute("orderdetails", orderdetails);
-        request.getRequestDispatcher("view/ManagerOrderDetail.jsp").forward(request, response);
-        
-        
+        db.deleteShipping(id);
+        response.sendRedirect("managershipping");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

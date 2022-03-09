@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Category;
-import model.OrderDetail;
+import model.Shipping;
 
 /**
  *
  * @author Admin
  */
-public class ManagerOrderDetailsController extends BaseAuthenticationController {
+public class ManagerShippingController extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,11 +39,9 @@ public class ManagerOrderDetailsController extends BaseAuthenticationController 
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);
         ManagerOrderDBContext db = new ManagerOrderDBContext();
-        ArrayList<OrderDetail> orderdetails = db.getOrderDetail();
-        request.setAttribute("orderdetails", orderdetails);
-        request.getRequestDispatcher("view/ManagerOrderDetail.jsp").forward(request, response);
-        
-        
+        ArrayList<Shipping> shippings = db.getShipping();
+        request.setAttribute("shippings", shippings);
+        request.getRequestDispatcher("view/ManagerShipping.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

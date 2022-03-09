@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.Manager;
+package controller.cart;
 
-import controller.Login.BaseAuthenticationController;
-import dal.CategoryDBContext;
-import dal.ManagerOrderDBContext;
+import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,14 +13,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
-import model.OrderDetail;
+import javax.servlet.http.HttpSession;
+import model.Cart;
+import model.CartDetail;
+
+import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class ManagerOrderDetailsController extends BaseAuthenticationController {
+public class DeleteCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,16 +36,28 @@ public class ManagerOrderDetailsController extends BaseAuthenticationController 
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CategoryDBContext dbCategory = new CategoryDBContext();
-        ArrayList<Category> categorys = dbCategory.getCategory();
-        request.setAttribute("category", categorys);
-        ManagerOrderDBContext db = new ManagerOrderDBContext();
-        ArrayList<OrderDetail> orderdetails = db.getOrderDetail();
-        request.setAttribute("orderdetails", orderdetails);
-        request.getRequestDispatcher("view/ManagerOrderDetail.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
         
+       HttpSession session = request.getSession();
+       Cart cart = (Cart) session.getAttribute("carts");
+       int pid = Integer.parseInt(request.getParameter("pid"));
+       ProductDBContext db = new ProductDBContext();
+       Product product = db.getProductByID(pid);
+       if(cart == null){
+           cart = new Cart();
+       }else{
+           for (CartDetail detail : cart.getDetails()) {
+               if(detail.getProduct().getPid() == product.getPid()){
+                   cart.getDetails().remove(detail.getProduct().getPid());
+                   break;
+               }
+           }
+       }
         
+        session.setAttribute("carts", cart);
+        response.sendRedirect("listcart");
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -56,7 +69,7 @@ public class ManagerOrderDetailsController extends BaseAuthenticationController 
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -70,7 +83,7 @@ public class ManagerOrderDetailsController extends BaseAuthenticationController 
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void processPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -84,5 +97,5 @@ public class ManagerOrderDetailsController extends BaseAuthenticationController 
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
+

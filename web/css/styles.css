@@ -11409,7 +11409,7 @@ img {vertical-align: middle;
 }
 .order_total_title {
     display: inline-block;
-    font-size: 14px;
+    font-size: 30px;
     color: rgba(0, 0, 0, 0.5);
     line-height: 60px
 }
@@ -11459,7 +11459,9 @@ img {vertical-align: middle;
     padding-right: 35px;
     outline: none;
     cursor: pointer;
-    vertical-align: top
+    vertical-align: top;
+    background-color: blue;
+        
 }
 
 

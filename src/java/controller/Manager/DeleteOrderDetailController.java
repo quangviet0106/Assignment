@@ -3,27 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.Manager;
 
-import dal.ProductDBContext;
+import controller.Login.BaseAuthenticationController;
+import dal.ManagerOrderDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Cart;
-import model.CartDetail;
-
-import model.Product;
 
 /**
  *
  * @author Admin
  */
-public class DeleteCartController extends HttpServlet {
+public class DeleteOrderDetailController extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,27 +32,11 @@ public class DeleteCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-       HttpSession session = request.getSession();
-       Cart cart = (Cart) session.getAttribute("carts");
-       int pid = Integer.parseInt(request.getParameter("pid"));
-       ProductDBContext db = new ProductDBContext();
-       Product product = db.getProductByID(pid);
-       if(cart == null){
-           cart = new Cart();
-       }else{
-           for (CartDetail detail : cart.getDetails()) {
-               if(detail.getProduct().getPid() == product.getPid()){
-                   cart.getDetails().remove(detail.getProduct().getPid());
-                   break;
-               }
-           }
-       }
-        
-        session.setAttribute("carts", cart);
-        response.sendRedirect("listcart");
+        int id = Integer.parseInt(request.getParameter("id"));
+        ManagerOrderDBContext db = new ManagerOrderDBContext();
+        db.deleteOrderDetail(id);
+        response.sendRedirect("managerorderdetails");
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -69,7 +48,7 @@ public class DeleteCartController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -83,7 +62,7 @@ public class DeleteCartController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -97,5 +76,5 @@ public class DeleteCartController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-}
 
+}

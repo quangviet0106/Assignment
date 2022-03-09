@@ -26,7 +26,7 @@
     </servlet>
     <servlet>
         <servlet-name>DeleteCartController</servlet-name>
-        <servlet-class>controller.DeleteCartController</servlet-class>
+        <servlet-class>controller.cart.DeleteCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateCartController</servlet-name>
@@ -79,6 +79,26 @@
     <servlet>
         <servlet-name>ManagerOrderDetailsController</servlet-name>
         <servlet-class>controller.Manager.ManagerOrderDetailsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteOrderDetailController</servlet-name>
+        <servlet-class>controller.Manager.DeleteOrderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerOrderController</servlet-name>
+        <servlet-class>controller.Manager.ManagerOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <servlet-class>controller.Manager.DeleteOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManagerShippingController</servlet-name>
+        <servlet-class>controller.Manager.ManagerShippingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteShippingController</servlet-name>
+        <servlet-class>controller.Manager.DeleteShippingController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -159,6 +179,26 @@
     <servlet-mapping>
         <servlet-name>ManagerOrderDetailsController</servlet-name>
         <url-pattern>/managerorderdetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteOrderDetailController</servlet-name>
+        <url-pattern>/deleteorderdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerOrderController</servlet-name>
+        <url-pattern>/managerorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteOrderController</servlet-name>
+        <url-pattern>/deleteorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerShippingController</servlet-name>
+        <url-pattern>/managershipping</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteShippingController</servlet-name>
+        <url-pattern>/deleteshipping</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

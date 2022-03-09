@@ -14,7 +14,6 @@ public class Shipping {
     private String name;
     private String phone;
     private String address;
-    private String note;
 
     public int getId() {
         return id;
@@ -48,12 +47,5 @@ public class Shipping {
         this.address = address;
     }
 
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
     
 }
