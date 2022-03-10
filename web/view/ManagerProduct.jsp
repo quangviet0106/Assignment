@@ -64,6 +64,7 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manager</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li class="nav-item"><a class="nav-link" href="manager">Product</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managercategory">Category</a></li>
                                 <li class="nav-item"><a class="nav-link" href="managerorderdetails">OrderDetail</a></li>
                                 <li class="nav-item"><a class="nav-link" href="managerorder">Order</a></li>
                                 <li class="nav-item"><a class="nav-link" href="managershipping">Shipping</a></li>
@@ -106,7 +107,7 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-md-6">
-                            <h2>Manage <b>Product</b></h2>
+                            <h2>Quản lý sản phẩm</h2>
                         </div>
                         <div class="col-md-6">
                             <a href="addproduct"  class="btn btn-success" data-toggle="modal"><span>Add New Product</span></a>						
@@ -133,7 +134,7 @@
                                 <td>
                                     <img src="${p.pimage}">
                                 </td>
-                                <td>${p.price}</td>
+                                <td>${p.price}₫</td>
                                 <td>${p.pcolor}</td>
                                 <td>${p.size}</td>
                                 <td>

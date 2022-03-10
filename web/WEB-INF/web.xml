@@ -100,6 +100,10 @@
         <servlet-name>DeleteShippingController</servlet-name>
         <servlet-class>controller.Manager.DeleteShippingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ManagerCategoryController</servlet-name>
+        <servlet-class>controller.Manager.ManagerCategoryController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -199,6 +203,10 @@
     <servlet-mapping>
         <servlet-name>DeleteShippingController</servlet-name>
         <url-pattern>/deleteshipping</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManagerCategoryController</servlet-name>
+        <url-pattern>/managercategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

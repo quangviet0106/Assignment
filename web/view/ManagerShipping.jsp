@@ -52,6 +52,7 @@
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manager</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li class="nav-item"><a class="nav-link" href="manager">Product</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managercategory">Category</a></li>
                                 <li class="nav-item"><a class="nav-link" href="managerorderdetails">OrderDetails</a></li>
                                 <li class="nav-item"><a class="nav-link" href="managerorder">Order</a></li>
                                 <li class="nav-item"><a class="nav-link" href="managershipping">Shipping</a></li>

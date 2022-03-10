@@ -1,31 +1,30 @@
 <%-- 
-    Document   : ListCart
-    Created on : Feb 25, 2022, 9:44:17 PM
+    Document   : ManagerCategory
+    Created on : Mar 10, 2022, 6:53:24 PM
     Author     : Admin
 --%>
-<%@page import="model.CartDetail"%>
-<%@page import="model.Cart"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>The Socks</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        
-        <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
-        <%
-            Cart cart = (Cart)session.getAttribute("carts");
-        %>
+        <link href="css/styles.css" rel="stylesheet" />
+        <script>
+            function deleteCategory(id)
+            {
+                var result = confirm("Are you sure?");
+                if (result)
+                {
+                    window.location.href = "deleteproduct?pid=" + id;
+                }
+            }
+        </script>
     </head>
     <body>
-       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="home">The Socks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -47,9 +46,19 @@
                                 </c:forEach>
                                  
                             </ul>
-                            
                         </li>
-                        
+                        <c:if test="${sessionScope.account.gid==1}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manager</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li class="nav-item"><a class="nav-link" href="manager">Product</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managercategory">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managerorderdetails">OrderDetail</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managerorder">Order</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managershipping">Shipping</a></li>
+                            </ul>
+                        </li>
+                        </c:if>
                     </ul>
                     <div class="search-container">
                         <form action="search" method="POST">
@@ -77,77 +86,48 @@
                                     <button class="btn btn-outline-primary ms-lg-2">Đăng Ký</button>
                             </form>
                         </c:if>
+  
                 </div>
             </div>
         </nav>
-        
-        <div class="cart_section mt-5">
-        <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="cart_container">
-                    <%if(cart == null){%>
-                    <p style="min-height: 1000px" class="text-center mt-5">Quý khách chưa thêm sản phẩm nào vào giỏ hàng !</p>
-                    <%}else{%>
-                    <div class="cart_items">
-                        <table class="table caption-top">
-                            <thead>
-                              <tr>
-                                <th scope="col">Image</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Color</th>
-                                <th scope="col">Size</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                                <th scope="col"></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <%for (CartDetail detail : cart.getDetails()) {%>
-
-                            <form action="update-cart">
-                              <tr>
-                              <input type="hidden" name="id" value="<%=detail.getProduct().getPid()%>"/>
-                              <td><img src="<%=detail.getProduct().getPimage()%>" width="150" style="height:150px"/></td>
-                                <th scope="row"><%=detail.getProduct().getPname()%></th>
-                                <td><%=detail.getProduct().getPcolor()%></td>
-                                <td><%=detail.getProduct().getSize()%></td>
-                                <td><%=detail.getProduct().getPrice()%>₫</td>
-                                <td><input onchange="this.form.submit()" type="number" name="quantity" value="<%=detail.getQuantity()%>"/></td>
-                                <td><%=detail.getTotal()%>₫</td>
-                                <td><a href="delete-cart?pid=<%=detail.getProduct().getPid()%>" class="btn btn-outline-danger"><i class="bi bi-trash3"></i>Delete</a></td>
-                              </tr>
-                            </form>
-                             <%}%>
-                            </tbody>
-                        </table>
-                         
-                    </div>
-                        
-                    <div class="order_total">
-                        <div class="order_total_content text-md-right">
-                            <div class="order_total_title">Order Total:</div>
-                            <div class="order_total_amount"><%=cart.getTotal() %>₫</div>
+          <div class="container mt-5">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Quản lý nhãn hiệu</h2>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="addcategory"  class="btn btn-success" data-toggle="modal"><span>Add New Category</span></a>						
                         </div>
                     </div>
-                    <div class="cart_buttons">
-                            <form action="home" method="POST">
-                            <button type="submit" class="button cart_button_clear">Quay lại</button> 
-                            </form>
-                            <form action="checkout" method="GET">
-                                    <button type="submit" class="button cart_button_checkout mt-5">Thanh Toán</button> 
-                            </form>
-                            
-                    </div>
                 </div>
-                <%}%> 
+                <table class="table table-striped table-hover text-center" style="width:600px">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${category}" var="cate">
+                            <tr>
+                                <td>${cate.cid}</td>
+                                <td>${cate.cname}</td>
+                                <td>
+                                    <a href="#"  class="edit" data-toggle="modal">Edit</a>
+                                    <a href="#" onclick="deleteCategory(${p.pid});" class="delete" data-toggle="modal">Delete</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </div>
-    </div>
- 
-    <footer class="py-5 bg-dark">
+            <a href="home"><button type="button" class="btn btn-primary mb-2">Back to home</button>
+            </a>
+        </div>               
+         <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>
                 <p>Phone: 0902234406</p>
@@ -159,10 +139,7 @@
                 </div>
                     
             </div>
-    </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>                
     </body>
 </html>
