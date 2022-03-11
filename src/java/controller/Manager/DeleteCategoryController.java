@@ -9,18 +9,16 @@ import controller.Login.BaseAuthenticationController;
 import dal.CategoryDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
 
 /**
  *
  * @author Admin
  */
-public class ManagerCategoryController extends BaseAuthenticationController {
+public class DeleteCategoryController extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +31,10 @@ public class ManagerCategoryController extends BaseAuthenticationController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int cid = Integer.parseInt(request.getParameter("cid"));
         CategoryDBContext db = new CategoryDBContext();
-        ArrayList<Category> categorys = db.getCategory();
-        request.setAttribute("category", categorys);
-        request.getRequestDispatcher("view/ManagerCategory.jsp").forward(request, response);
+        db.deleteCategory(cid);
+        response.sendRedirect("managercategory");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

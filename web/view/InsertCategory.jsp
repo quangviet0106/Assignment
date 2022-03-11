@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ManagerCategory
-    Created on : Mar 10, 2022, 6:53:24 PM
+    Document   : InsertCategory
+    Created on : Mar 10, 2022, 8:08:43 PM
     Author     : Admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,19 +12,9 @@
         <title>The Socks</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link href="css/styles.css" rel="stylesheet" />
-        <script>
-            function deleteCategory(id)
-            {
-                var result = confirm("Are you sure?");
-                if (result)
-                {
-                    window.location.href = "deletecategory?cid=" + id;
-                }
-            }
-        </script>
     </head>
     <body>
-         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="home">The Socks</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -90,44 +80,27 @@
                 </div>
             </div>
         </nav>
-          <div class="container mt-5">
-            <div class="table-wrapper">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h2>Quản lý nhãn hiệu</h2>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="insertcategory"  class="btn btn-success" data-toggle="modal"><span>Add New Category</span></a>						
-                        </div>
+        <div class="container mt-5">
+            <div class="table-title">
+                <h2>Add <b>Category</b></h2>
+            </div>
+            <form action="insertcategory" method="POST">
+                <div class="modal-body" style="width: 500px">
+                    <div class="form-group">
+                        <label>ID</label>
+                        <input name="cid" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input name="cname" type="text" class="form-control" required>
                     </div>
                 </div>
-                <table class="table table-striped table-hover text-center" style="width:600px">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${category}" var="cate">
-                            <tr>
-                                <td>${cate.cid}</td>
-                                <td>${cate.cname}</td>
-                                <td>
-                                    <a href="updatecategory?cid=${cate.cid}"  class="edit" data-toggle="modal">Edit</a>
-                                    <a href="#" onclick="deleteCategory(${cate.cid});" class="delete" data-toggle="modal">Delete</a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <a href="home"><button type="button" class="btn btn-primary mb-2">Back to home</button>
-            </a>
-        </div>               
-         <footer class="py-5 bg-dark">
+                <div class="modal-footer" style="width: 500px">
+                    <input type="submit" class="btn btn-success" value="Add">
+                </div>
+            </form>
+         </div>
+          <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>
                 <p>Phone: 0902234406</p>
@@ -140,6 +113,6 @@
                     
             </div>
         </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>                
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>                   
     </body>
 </html>

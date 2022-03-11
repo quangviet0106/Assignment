@@ -53,4 +53,44 @@ public class CategoryDBContext extends DBContext{
         }
         return null;
     }
+    public void insertCategory(Category c){
+        try {
+            String sql = "INSERT INTO [dbo].[Category]\n" +
+                    "           ([cid]\n" +
+                    "           ,[cname])\n" +
+                    "     VALUES\n" +
+                    "           (?,?)";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, c.getCid());
+            stm.setString(2, c.getCname());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void deleteCategory(int cid){
+        try {
+            String sql = "DELETE FROM Category where cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, cid);
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    public void updateCategory(Category c){
+        try {
+            String sql = "UPDATE [dbo].[Category]\n" +
+                    "   SET \n" +
+                    "      [cname] = ?\n" +
+                    " WHERE [cid] = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, c.getCname());
+            stm.setInt(2, c.getCid());
+            stm.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

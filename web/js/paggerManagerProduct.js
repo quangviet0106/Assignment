@@ -9,7 +9,7 @@ function paggerManager(id, pageindex, totalpage,gap)
     var result1 = '';
     //generate first
     if(pageindex - gap > 1)
-        result +='<a href="manager?page=1">First</a>';
+        result1 +='<a href="manager?page=1">First</a>';
     
     for(var i = pageindex - gap; i < pageindex ; i++)
     {

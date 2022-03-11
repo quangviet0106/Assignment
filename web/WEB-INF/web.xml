@@ -104,6 +104,18 @@
         <servlet-name>ManagerCategoryController</servlet-name>
         <servlet-class>controller.Manager.ManagerCategoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InsertCategoryController</servlet-name>
+        <servlet-class>controller.Manager.InsertCategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCategoryController</servlet-name>
+        <servlet-class>controller.Manager.DeleteCategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCategoryController</servlet-name>
+        <servlet-class>controller.Manager.UpdateCategoryController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -207,6 +219,18 @@
     <servlet-mapping>
         <servlet-name>ManagerCategoryController</servlet-name>
         <url-pattern>/managercategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertCategoryController</servlet-name>
+        <url-pattern>/insertcategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCategoryController</servlet-name>
+        <url-pattern>/deletecategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCategoryController</servlet-name>
+        <url-pattern>/updatecategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

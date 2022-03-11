@@ -38,7 +38,16 @@
                             </ul>
                         </li>
                         <c:if test="${sessionScope.account.gid==1}">
-                        <li class="nav-item"><a class="nav-link" href="#!">Manager</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Manager</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li class="nav-item"><a class="nav-link" href="manager">Product</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managercategory">Category</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managerorderdetails">OrderDetail</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managerorder">Order</a></li>
+                                <li class="nav-item"><a class="nav-link" href="managershipping">Shipping</a></li>
+                            </ul>
+                        </li>
                         </c:if>
                     </ul>
                     <div class="search-container">
@@ -119,7 +128,6 @@
                         </div>    
                 </div>
                 <div class="modal-footer" style="width: 500px">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                     <input type="submit" class="btn btn-success" value="Add">
                 </div>
             </form>

@@ -133,10 +133,10 @@
                     </div>
                     <div class="cart_buttons">
                             <form action="home" method="POST">
-                            <button type="submit" class="button cart_button_clear">Quay lại</button> 
+                            <button type="submit" class="button cart_button_clear mb-5">Quay lại</button> 
                             </form>
                             <form action="checkout" method="GET">
-                                    <button type="submit" class="button cart_button_checkout mt-5">Thanh Toán</button> 
+                                    <button type="submit" class="button cart_button_checkout mb-5">Thanh Toán</button> 
                             </form>
                             
                     </div>

@@ -9,7 +9,6 @@ import controller.Login.BaseAuthenticationController;
 import dal.CategoryDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,7 @@ import model.Category;
  *
  * @author Admin
  */
-public class ManagerCategoryController extends BaseAuthenticationController {
+public class InsertCategoryController extends BaseAuthenticationController {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,10 +32,19 @@ public class ManagerCategoryController extends BaseAuthenticationController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CategoryDBContext db = new CategoryDBContext();
-        ArrayList<Category> categorys = db.getCategory();
-        request.setAttribute("category", categorys);
-        request.getRequestDispatcher("view/ManagerCategory.jsp").forward(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet InsertCategoryController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet InsertCategoryController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,7 +59,7 @@ public class ManagerCategoryController extends BaseAuthenticationController {
     @Override
     protected void processGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("view/InsertCategory.jsp").forward(request, response);
     }
 
     /**
@@ -65,7 +73,15 @@ public class ManagerCategoryController extends BaseAuthenticationController {
     @Override
     protected void processPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int cid = Integer.parseInt(request.getParameter("cid"));
+        String cname = request.getParameter("cname");
+        Category cate = new Category();
+        cate.setCid(cid);
+        cate.setCname(cname);
+        
+        CategoryDBContext db = new CategoryDBContext();
+        db.insertCategory(cate);
+        response.sendRedirect("managercategory");
     }
 
     /**
