@@ -84,29 +84,32 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="bg-info py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <div class="breadcrumb-overlay"></div>
-                    <h1 class="display-4 fw-bolder">Shop Quang Việt</h1>
+                    <h1 class="display-4 fw-bolder">Quang Việt Store</h1>
                     <p class="lead fw-normal text-white-50 mb-0">Uy tín - Chất lượng cao</p>
                 </div>
 
             </div>
         </header>
         <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <h1>All Products<span style="font-size: 25px ; color: #bcbebf">(${requestScope.count} sản phẩm)</span></h1>
-                <div class="mb-4">
+            <div class="row">
+            <div class="col-md-2 mt-5">
+            <div class="mb-4 ms-5">
+                <h4>Lọc & Sắp xếp</h4>
                     <form id="searchForm" action="searchprice" method="POST">
                         Mức giá:<br>
-                        <input onchange="submitForm()" type="checkbox" name="price1" value="10000"}/> Từ 10- 20 nghìn <br>
+                        <input onchange="submitForm()" type="checkbox" name="price1" value="10000"/> Từ 10- 20 nghìn <br>
                         <input onchange="submitForm()" type="checkbox" name="price2" value="20000"/> Từ 20- 30 nghìn <br>
                         <input onchange="submitForm()" type="checkbox" name="price3" value="30000"/> Từ 30- 40 nghìn <br>
-                        <input onchange="submitForm()" type="checkbox" name="price4" value="40000"/> Trên 40 nghìn 
+                        <input onchange="submitForm()"  type="checkbox" name="price4" value="40000"/> Trên 40 nghìn 
                     </form>
-                   
-                </div>
+            </div>
+            </div>
+            <div class="container px-4 px-lg-5 mt-5 col-md-10">
+                <h1>All Products<span style="font-size: 25px ; color: #bcbebf">(${requestScope.count} sản phẩm)</span></h1>
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <c:forEach items="${price1}" var="p">
                     <div class="col mb-5">
@@ -122,7 +125,7 @@
                                 <div class="text-center">
                                     <form action="addcart" method="POST"> 
                                         <input type="hidden" name="id" value="${p.pid}" /> 
-                                        <input id = "cart" type="submit" value="Add to cart"/> 
+                                        <input id = "cart" type="submit" value="Thêm vào giỏ hàng"/> 
                                     </form>
                                     
                                 </div>
@@ -131,7 +134,8 @@
                     </div>
                     </c:forEach>
                 </div>
-            </div>   
+            </div> 
+            </div>
         </section>
         <footer class="py-5 bg-dark">
             <div class="contact text-white">

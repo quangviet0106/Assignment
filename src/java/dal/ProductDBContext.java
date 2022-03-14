@@ -410,7 +410,7 @@ public class ProductDBContext extends DBContext {
         }
         return -1;
     }
-     public ArrayList<Product> SearchProductByPrice3(String price){
+    public ArrayList<Product> SearchProductByPrice3(String price){
         ArrayList<Product> product = new ArrayList<>();
         try {
             String sql = "SELECT * FROM Product where price > ?";
@@ -453,6 +453,70 @@ public class ProductDBContext extends DBContext {
             Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
+    }
+    public ArrayList<Product> SortAsc(int pageindex, int pagesize){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (order by price asc) as row_index FROM Product) tb\n" +
+                         "WHERE row_index >=(?-1)* ? +1 AND row_index <= ? * ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, pageindex);
+            stm.setInt(2, pagesize);
+            stm.setInt(3, pageindex);
+            stm.setInt(4, pagesize);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product pr = new Product();
+                pr.setPid(rs.getInt(1));
+                pr.setPname(rs.getString(2));
+                pr.setPdescription(rs.getString(3));
+                pr.setPimage(rs.getString(4));
+                pr.setPrice(rs.getInt(5));
+                pr.setPcolor(rs.getString(6));
+                pr.setSize(rs.getInt(7));
+                pr.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                pr.setCate(c);
+                product.add(pr);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+    public ArrayList<Product> SortDesc(int pageindex, int pagesize){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (order by price desc) as row_index FROM Product) tb\n" +
+"                        WHERE row_index >=(?-1)* ? +1 AND row_index <= ? * ? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, pageindex);
+            stm.setInt(2, pagesize);
+            stm.setInt(3, pageindex);
+            stm.setInt(4, pagesize);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product pr = new Product();
+                pr.setPid(rs.getInt(1));
+                pr.setPname(rs.getString(2));
+                pr.setPdescription(rs.getString(3));
+                pr.setPimage(rs.getString(4));
+                pr.setPrice(rs.getInt(5));
+                pr.setPcolor(rs.getString(6));
+                pr.setSize(rs.getInt(7));
+                pr.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                pr.setCate(c);
+                product.add(pr);
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
     }
 }
 

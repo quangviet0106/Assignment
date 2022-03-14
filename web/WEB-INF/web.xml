@@ -120,6 +120,14 @@
         <servlet-name>ManagerAccountController</servlet-name>
         <servlet-class>controller.Manager.ManagerAccountController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SortDescByPriceController</servlet-name>
+        <servlet-class>controller.SortDescByPriceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortAscByPriceController</servlet-name>
+        <servlet-class>controller.SortAscByPriceController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -239,6 +247,14 @@
     <servlet-mapping>
         <servlet-name>ManagerAccountController</servlet-name>
         <url-pattern>/manageraccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortDescByPriceController</servlet-name>
+        <url-pattern>/sortdesc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortAscByPriceController</servlet-name>
+        <url-pattern>/sortasc</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

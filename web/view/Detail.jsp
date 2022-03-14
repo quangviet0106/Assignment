@@ -82,11 +82,11 @@
             </div>
         </nav>
         <!-- Header-->
-        <header class="bg-dark py-5">
+        <header class="bg-info py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
                     <div class="breadcrumb-overlay"></div>
-                    <h1 class="display-4 fw-bolder">Shop Quang Việt</h1>
+                    <h1 class="display-4 fw-bolder">Quang Việt Store</h1>
                     <p class="lead fw-normal text-white-50 mb-0">Uy tín - Chất lượng cao</p>
                 </div>
 
@@ -143,7 +143,7 @@
                                 <div class="text-center">
                                     <form action="addcart" method="POST"> 
                                         <input type="hidden" name="id" value="${p.pid}" /> 
-                                        <input id = "cart" type="submit" value="Add to cart"/> 
+                                        <input id = "cart" type="submit" value="Thêm vào giỏ hàng"/> 
                                     </form>
                                     
                                 </div>

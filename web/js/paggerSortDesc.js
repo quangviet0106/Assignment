@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function pagger(id, pageindex, totalpage,gap)
+function paggersortdesc(id, pageindex, totalpage,gap)
 {
     var container = document.getElementById(id);
-    var result = '';
+    var result2 = '';
     //generate first
     if(pageindex - gap > 1)
-        result +='<a href="home?page=1">First</a>';
+        result2 +='<a href="sortdesc?page=1">First</a>';
     
     for(var i = pageindex - gap; i < pageindex ; i++)
     {
         if(i >=1)
         {
-            result +='<a href="home?page='+i+'">'+i+'</a>';
+            result2 +='<a href="sortdesc?page='+i+'">'+i+'</a>';
         }
     }
     
     // generate span for pageindex
     
-        result += '<span>'+pageindex+'</span>';
+        result2 += '<span>'+pageindex+'</span>';
     
     
     
@@ -30,17 +30,15 @@ function pagger(id, pageindex, totalpage,gap)
     {
         if(i <= totalpage)
         {
-            result +='<a href="home?page='+i+'">'+i+'</a>';
+            result2 +='<a href="sortdesc?page='+i+'">'+i+'</a>';
         }
     }
     
     //generate last
     if(pageindex + gap < totalpage)
-        result +='<a href="home?page='+totalpage+'">Last</a>';
+        result2 +='<a href="sortdesc?page='+totalpage+'">Last</a>';
     
-    container.innerHTML = result;
+    container.innerHTML = result2;
 }
-
-
 
 
