@@ -8,6 +8,7 @@ package controller.Login;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +35,17 @@ public class LogOutController extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("account");
         session.removeAttribute("carts");
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cooky : cookies) {
+            if (cooky.getName().equals("username")) {
+                cooky.setMaxAge(0);
+                response.addCookie(cooky);
+            }
+            if (cooky.getName().equals("password")) {
+                cooky.setMaxAge(0);
+                response.addCookie(cooky);
+            }
+        }
         response.sendRedirect("home");
     }
 

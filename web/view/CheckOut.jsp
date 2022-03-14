@@ -122,7 +122,7 @@
                     <div class="order_total">
                         <div class="order_total_content text-md-right">
                             <div class="order_total_title">Order Total:</div>
-                            <div class="order_total_amount"><%=cart.getTotal() %>00₫</div>
+                            <div class="order_total_amount"><%=cart.getTotal() %>₫</div>
                         </div>
                     </div>
                     </div>

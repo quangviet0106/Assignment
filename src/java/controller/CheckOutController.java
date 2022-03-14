@@ -59,6 +59,7 @@ public class CheckOutController extends HttpServlet {
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);
+        
         request.getRequestDispatcher("view/CheckOut.jsp").forward(request, response);
     }
 

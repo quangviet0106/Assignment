@@ -36,7 +36,7 @@ public abstract class BaseAuthenticationController extends HttpServlet {
         Account account = (Account) session.getAttribute("account");
         if (account == null) {
             Cookie[] cookies = request.getCookies();
-            if (cookies != null)//not login, some cookies
+            if (cookies != null)
             {
                 String username = null;
                 String password = null;
@@ -60,7 +60,7 @@ public abstract class BaseAuthenticationController extends HttpServlet {
                         return false;
                     }
                 }
-            } else //not login, not cookie
+            } else
             {
                 return false;
             }
