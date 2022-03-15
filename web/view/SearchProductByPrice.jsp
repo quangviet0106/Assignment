@@ -98,14 +98,18 @@
             <div class="row">
             <div class="col-md-2 mt-5">
             <div class="mb-4 ms-5">
-                <h4>Lọc & Sắp xếp</h4>
+                <h5><i class="bi bi-filter"><b></i>Lọc & Sắp xếp</b></h5>
+                <div class="mt-4">
                     <form id="searchForm" action="searchprice" method="POST">
-                        Mức giá:<br>
+                        <b>Mức giá</b><br>
                         <input onchange="submitForm()" type="checkbox" name="price1" value="10000"/> Từ 10- 20 nghìn <br>
                         <input onchange="submitForm()" type="checkbox" name="price2" value="20000"/> Từ 20- 30 nghìn <br>
                         <input onchange="submitForm()" type="checkbox" name="price3" value="30000"/> Từ 30- 40 nghìn <br>
                         <input onchange="submitForm()"  type="checkbox" name="price4" value="40000"/> Trên 40 nghìn 
                     </form>
+                    <a href="sortasc" style="color:black"><i class="bi bi-sort-down"></i> Giá(thấp-cao)</a><br>
+                    <a href="sortdesc"style="color:black"><i class="bi bi-sort-up"></i> Giá(cao-thấp)</a> 
+                </div>
             </div>
             </div>
             <div class="container px-4 px-lg-5 mt-5 col-md-10">

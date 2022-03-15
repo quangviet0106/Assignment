@@ -518,5 +518,185 @@ public class ProductDBContext extends DBContext {
         }
         return product;
     }
+    public ArrayList<Product> SearchProductByPriceOfCategory(String price,int cid){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "select * from Product where price >=? and price<=20000 and cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            stm.setInt(2, cid);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setPid(rs.getInt(1));
+                p.setPname(rs.getString(2));
+                p.setPdescription(rs.getString(3));
+                p.setPimage(rs.getString(4));
+                p.setPrice(rs.getInt(5));
+                p.setPcolor(rs.getString(6));
+                p.setSize(rs.getInt(7));
+                p.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                p.setCate(c);
+                product.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+      public int countProductByPriceOfCategory(String price,int cid)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where price >= ? AND price <= 20000 and cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            stm.setInt(2, cid);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+     public ArrayList<Product> SearchProductByPriceOfCategory1(String price,int cid){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "select * from Product where price >=? and price<=30000 and cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            stm.setInt(2, cid);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setPid(rs.getInt(1));
+                p.setPname(rs.getString(2));
+                p.setPdescription(rs.getString(3));
+                p.setPimage(rs.getString(4));
+                p.setPrice(rs.getInt(5));
+                p.setPcolor(rs.getString(6));
+                p.setSize(rs.getInt(7));
+                p.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                p.setCate(c);
+                product.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+      public int countProductByPriceOfCategory1(String price,int cid)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where price >= ? AND price <= 30000 and cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            stm.setInt(2, cid);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+    public ArrayList<Product> SearchProductByPriceOfCategory2(String price,int cid){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "select * from Product where price >=? and price<=40000 and cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            stm.setInt(2, cid);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setPid(rs.getInt(1));
+                p.setPname(rs.getString(2));
+                p.setPdescription(rs.getString(3));
+                p.setPimage(rs.getString(4));
+                p.setPrice(rs.getInt(5));
+                p.setPcolor(rs.getString(6));
+                p.setSize(rs.getInt(7));
+                p.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                p.setCate(c);
+                product.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+     public int countProductByPriceOfCategory2(String price,int cid)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where price >= ? AND price <= 40000 and cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            stm.setInt(2, cid);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+    public ArrayList<Product> SearchProductByPriceOfCategory3(String price,int cid){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "select * from Product where price > ? and cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            stm.setInt(2, cid);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setPid(rs.getInt(1));
+                p.setPname(rs.getString(2));
+                p.setPdescription(rs.getString(3));
+                p.setPimage(rs.getString(4));
+                p.setPrice(rs.getInt(5));
+                p.setPcolor(rs.getString(6));
+                p.setSize(rs.getInt(7));
+                p.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                p.setCate(c);
+                product.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+     public int countProductByPriceOfCategory3(String price,int cid)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where price > ? and cid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, price);
+            stm.setInt(2, cid);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
 }
 

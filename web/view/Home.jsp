@@ -127,8 +127,7 @@
                     <a href="sortasc" style="color:black"><i class="bi bi-sort-down"></i> Giá(thấp-cao)</a><br>
                     <a href="sortdesc"style="color:black"><i class="bi bi-sort-up"></i> Giá(cao-thấp)</a> 
                 </div>
-            </div>
-                
+            </div>   
             </div>
             <div class="container px-4 px-lg-5 mt-5 col-md-10">
                 <h1>All Products<span style="font-size: 25px ; color: #bcbebf">(${requestScope.count} sản phẩm)</span></h1>

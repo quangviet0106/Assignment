@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dal.CategoryDBContext;
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 import model.Product;
 
 /**
@@ -32,6 +34,9 @@ public class SortDescByPriceController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        CategoryDBContext dbCategory = new CategoryDBContext();
+        ArrayList<Category> categorys = dbCategory.getCategory();
+        request.setAttribute("category", categorys);
         ProductDBContext db = new ProductDBContext();
         String raw_page = request.getParameter("page");
         if(raw_page ==null || raw_page.trim().length() ==0)

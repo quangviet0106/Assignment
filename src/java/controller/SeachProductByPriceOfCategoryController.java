@@ -21,7 +21,7 @@ import model.Product;
  *
  * @author Admin
  */
-public class SortAscByPriceController extends HttpServlet {
+public class SeachProductByPriceOfCategoryController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,26 +34,40 @@ public class SortAscByPriceController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int cid = Integer.parseInt(request.getParameter("cid"));
         CategoryDBContext dbCategory = new CategoryDBContext();
-        ArrayList<Category> categorys = dbCategory.getCategory();
-        request.setAttribute("category", categorys);
+        ArrayList<Category> category = dbCategory.getCategory();
+        Category c = dbCategory.getCategoryById(cid);
+        request.setAttribute("categorybyid", c);
+        request.setAttribute("category", category);
+        String price = request.getParameter("price");
+        String price1 = request.getParameter("price1");
+        String price2 = request.getParameter("price2");
+        String price3 = request.getParameter("price3");
+        int count = 0;
+        ArrayList<Product> product = new ArrayList<>();
         ProductDBContext db = new ProductDBContext();
-        String raw_page = request.getParameter("page");
-        if(raw_page ==null || raw_page.trim().length() ==0)
-            raw_page = "1";
-        int pageindex = Integer.parseInt(raw_page);
-        int pagesize = 8;
-        int totalrecords = db.count();
-        int totalpage = (totalrecords%pagesize ==0)?totalrecords/pagesize
-                :(totalrecords/pagesize)+1;
-        int count = db.count();
-        ArrayList<Product> product = db.SortAsc(pageindex,pagesize);
-        request.setAttribute("count", count);
-        request.setAttribute("totalpage", totalpage);
-        request.setAttribute("pageindex", pageindex);
-        request.setAttribute("pagesize", pagesize);
+        if(price!=null){
+           product = db.SearchProductByPriceOfCategory(price,cid);
+           count = db.countProductByPriceOfCategory(price, cid); 
+        }
+        if(price1!=null){
+           product = db.SearchProductByPriceOfCategory1(price1, cid);
+           count = db.countProductByPriceOfCategory1(price1, cid);
+        }
+        if(price2!=null){
+           product = db.SearchProductByPriceOfCategory2(price2, cid);
+           count = db.countProductByPriceOfCategory2(price2, cid);
+        }
+        if(price3!=null){
+           product = db.SearchProductByPriceOfCategory3(price3, cid);
+           count = db.countProductByPriceOfCategory3(price3, cid); 
+        }
+        
         request.setAttribute("product", product);
-        request.getRequestDispatcher("view/SortAscByPrice.jsp").forward(request, response);
+        request.setAttribute("counts", count);
+        request.getRequestDispatcher("view/SearchProductByCategory.jsp").forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -87,7 +87,7 @@
             <div class="col-lg-10 offset-lg-1">
                 <div class="cart_container">
                     <%if(cart == null){%>
-                    <p style="min-height: 1000px" class="text-center mt-5">Quý khách chưa thêm sản phẩm nào vào giỏ hàng !</p>
+                    <p style="min-height: 400px" class="text-center mt-5">Quý khách chưa thêm sản phẩm nào vào giỏ hàng !</p>
                     <%}else{%>
                     <div class="cart_items">
                         <table class="table caption-top">
