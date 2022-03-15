@@ -92,6 +92,11 @@ public class Product {
         this.quantity = quantity;
     }
 
+    @Override
+    public String toString() {
+        return "Product{" + "pid=" + pid + ", pname=" + pname + ", pdescription=" + pdescription + ", pimage=" + pimage + ", price=" + price + ", pcolor=" + pcolor + ", cate=" + cate + ", size=" + size + ", quantity=" + quantity + '}';
+    }
+
    
     
 }

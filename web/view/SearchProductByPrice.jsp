@@ -22,6 +22,10 @@
             {
                 document.getElementById("searchForm").submit();
             }
+            function submitForm1()
+            {
+                document.getElementById("searchColor").submit();
+            }
         </script>
     </head>
     <body>
@@ -109,6 +113,19 @@
                     </form>
                     <a href="sortasc" style="color:black"><i class="bi bi-sort-down"></i> Giá(thấp-cao)</a><br>
                     <a href="sortdesc"style="color:black"><i class="bi bi-sort-up"></i> Giá(cao-thấp)</a> 
+                </div>
+                 <div class="mt-5">
+                     <form id="searchColor" action="colorproduct" method="POST">
+                        <b>Màu sắc</b><br>
+                        <input onchange="submitForm1()" type="checkbox" name="color" value="đen"/> Đen <br>
+                        <input onchange="submitForm1()" type="checkbox" name="color" value="trắng"/> Trắng <br>
+                        <input onchange="submitForm1()" type="checkbox" name="color" value="xám"/> Xám <br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="xanh lam"/> Xanh Lam<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="xanh lá"/> Xanh Lá<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="vàng"/> Vàng<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="đỏ"/> Đỏ<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="nâu"/> Nâu<br>
+                    </form>
                 </div>
             </div>
             </div>

@@ -25,6 +25,10 @@
             {
                 document.getElementById("searchForm").submit();
             }
+            function submitForm1()
+            {
+                document.getElementById("searchColor").submit();
+            }
         </script>
     </head>
     <body>
@@ -111,8 +115,22 @@
                         <input onchange="submitForm()" type="checkbox" name="price2" value="30000"/> Từ 30- 40 nghìn <br>
                         <input onchange="submitForm()" type="checkbox" name="price3" value="40000"/> Trên 40 nghìn 
                     </form>
-                    <a href="sortasc" style="color:black"><i class="bi bi-sort-down"></i> Giá(thấp-cao)</a><br>
-                    <a href="sortdesc"style="color:black"><i class="bi bi-sort-up"></i> Giá(cao-thấp)</a> 
+                    <a href="sortascpriceofcategory?cid=${categorybyid.cid}" style="color:black"><i class="bi bi-sort-down"></i> Giá(thấp-cao)</a><br>
+                    <a href="sortdescpriceofcategory?cid=${categorybyid.cid}"style="color:black"><i class="bi bi-sort-up"></i> Giá(cao-thấp)</a> 
+                </div>
+                <div class="mt-5">
+                     <form id="searchColor" action="colorproductbycategory" method="POST">
+                        <b>Màu sắc</b><br>
+                        <input type="hidden" name="cid" value="${categorybyid.cid}">
+                        <input onchange="submitForm1()" type="checkbox" name="color" value="đen"/> Đen <br>
+                        <input onchange="submitForm1()" type="checkbox" name="color" value="trắng"/> Trắng <br>
+                        <input onchange="submitForm1()" type="checkbox" name="color" value="xám"/> Xám <br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="xanh lam"/> Xanh Lam<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="xanh lá"/> Xanh Lá<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="vàng"/> Vàng<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="đỏ"/> Đỏ<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="nâu"/> Nâu<br>
+                    </form>
                 </div>
             </div>
             </div>

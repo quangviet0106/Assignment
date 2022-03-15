@@ -132,6 +132,18 @@
         <servlet-name>SeachProductByPriceOfCategoryController</servlet-name>
         <servlet-class>controller.SeachProductByPriceOfCategoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SortDescPriceOfCategoryController</servlet-name>
+        <servlet-class>controller.SortDescPriceOfCategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchColorProductController</servlet-name>
+        <servlet-class>controller.SearchColorProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchColorProductByCategoryController</servlet-name>
+        <servlet-class>controller.SearchColorProductByCategoryController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -263,6 +275,18 @@
     <servlet-mapping>
         <servlet-name>SeachProductByPriceOfCategoryController</servlet-name>
         <url-pattern>/searchproductbypriceofcategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortDescPriceOfCategoryController</servlet-name>
+        <url-pattern>/sortdescpriceofcategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchColorProductController</servlet-name>
+        <url-pattern>/colorproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchColorProductByCategoryController</servlet-name>
+        <url-pattern>/colorproductbycategory</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

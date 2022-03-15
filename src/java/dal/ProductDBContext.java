@@ -698,5 +698,149 @@ public class ProductDBContext extends DBContext {
         }
         return -1;
     }
+    public ArrayList<Product> SortAscPriceOfCategory(int cid){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "Select * from Product where cid = ? order by price asc";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, cid);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setPid(rs.getInt(1));
+                p.setPname(rs.getString(2));
+                p.setPdescription(rs.getString(3));
+                p.setPimage(rs.getString(4));
+                p.setPrice(rs.getInt(5));
+                p.setPcolor(rs.getString(6));
+                p.setSize(rs.getInt(7));
+                p.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                p.setCate(c);
+                product.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+    public ArrayList<Product> SortDescPriceOfCategory(int cid){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "Select * from Product where cid = ? order by price desc";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, cid);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setPid(rs.getInt(1));
+                p.setPname(rs.getString(2));
+                p.setPdescription(rs.getString(3));
+                p.setPimage(rs.getString(4));
+                p.setPrice(rs.getInt(5));
+                p.setPcolor(rs.getString(6));
+                p.setSize(rs.getInt(7));
+                p.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                p.setCate(c);
+                product.add(p);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+    public ArrayList<Product> ColorProduct(String color){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "select * from Product where pcolor like ? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, "%"+color+"%");
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setPid(rs.getInt(1));
+                p.setPname(rs.getString(2));
+                p.setPdescription(rs.getString(3));
+                p.setPimage(rs.getString(4));
+                p.setPrice(rs.getInt(5));
+                p.setPcolor(rs.getString(6));
+                p.setSize(rs.getInt(7));
+                p.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                p.setCate(c);
+                product.add(p);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+    public int countProductByColor(String color)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where pcolor like ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+             stm.setString(1, "%"+color+"%");
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
+     public ArrayList<Product> ColorProductByCategory(String color,int cid){
+        ArrayList<Product> product = new ArrayList<>();
+        try {
+            String sql = "select * from Product where cid = ? and pcolor like ? ";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, cid);
+            stm.setString(2, "%"+color+"%");
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                Product p = new Product();
+                p.setPid(rs.getInt(1));
+                p.setPname(rs.getString(2));
+                p.setPdescription(rs.getString(3));
+                p.setPimage(rs.getString(4));
+                p.setPrice(rs.getInt(5));
+                p.setPcolor(rs.getString(6));
+                p.setSize(rs.getInt(7));
+                p.setQuantity(rs.getInt(8));
+                Category c = new Category();
+                c.setCid(rs.getInt(9));
+                p.setCate(c);
+                product.add(p);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return product;
+    }
+     public int countProductByColorOfCategory(String color,int cid)
+    {
+        try {
+            String sql = "SELECT COUNT(*) as Total FROM Product where cid = ? and pcolor like ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, cid);
+            stm.setString(2, "%"+color+"%");
+            ResultSet rs = stm.executeQuery();
+            if(rs.next())
+            {
+                return rs.getInt("Total");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return -1;
+    }
 }
 
