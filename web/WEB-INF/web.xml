@@ -144,6 +144,18 @@
         <servlet-name>SearchColorProductByCategoryController</servlet-name>
         <servlet-class>controller.SearchColorProductByCategoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToWishList</servlet-name>
+        <servlet-class>controller.wishlist.AddToWishList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>WishListController</servlet-name>
+        <servlet-class>controller.wishlist.WishListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteWishListController</servlet-name>
+        <servlet-class>controller.wishlist.DeleteWishListController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -287,6 +299,18 @@
     <servlet-mapping>
         <servlet-name>SearchColorProductByCategoryController</servlet-name>
         <url-pattern>/colorproductbycategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToWishList</servlet-name>
+        <url-pattern>/wishlist/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>WishListController</servlet-name>
+        <url-pattern>/wishlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteWishListController</servlet-name>
+        <url-pattern>/deletewishlist</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

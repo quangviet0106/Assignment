@@ -82,6 +82,11 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                         </form>
+                         <form class="d-flex" action="wishlist">
+                        <button class="btn btn-outline-dark ms-1" type="submit">
+                            <i class="fa fa-heart-o me-1"style="padding: 0" ></i>
+                        </button>
+                        </form>
                         <c:if test="${sessionScope.account !=null}">
                             <form action="logout" method="GET">
                                     <button class="btn btn-outline-primary ms-lg-2">Đăng Xuất</button>
@@ -126,6 +131,19 @@
                     <a href="sortasc" style="color:black"><i class="bi bi-sort-down"></i> Giá(thấp-cao)</a><br>
                     <a href="sortdesc"style="color:black"><i class="bi bi-sort-up"></i> Giá(cao-thấp)</a> 
                 </div>
+                <div class="mt-5">
+                     <form id="searchColor" action="colorproduct" method="POST">
+                        <b>Màu sắc</b><br>
+                        <input onchange="submitForm1()" type="checkbox" name="color" value="đen"/> Đen <br>
+                        <input onchange="submitForm1()" type="checkbox" name="color" value="trắng"/> Trắng <br>
+                        <input onchange="submitForm1()" type="checkbox" name="color" value="xám"/> Xám <br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="xanh lam"/> Xanh Lam<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="xanh lá"/> Xanh Lá<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="vàng"/> Vàng<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="đỏ"/> Đỏ<br>
+                        <input onchange="submitForm1()"  type="checkbox" name="color" value="nâu"/> Nâu<br>
+                    </form>
+                </div>
             </div>
                 
             </div>
@@ -148,7 +166,12 @@
                                         <input type="hidden" name="id" value="<%=p.getPid()%>" /> 
                                         <input id = "cart" type="submit" value="Thêm vào giỏ hàng"/> 
                                     </form>
-                                    
+                                    <form action="wishlist/add" method="POST"> 
+                                        <input type="hidden" name="id" value="<%=p.getPid()%>" /> 
+                                        <button class="btn btn-outline-dark flex-shrink-0 ms-1 mt-2" style="height: 38px" type="submit">
+                                           <i class="fa fa-heart-o me-1" style="padding:0"></i>
+                                       </button>
+                                    </form>      
                                 </div>
                             </div>
                         </div>

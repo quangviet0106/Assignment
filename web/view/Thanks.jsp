@@ -55,6 +55,11 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                         </form>
+                         <form class="d-flex" action="wishlist">
+                        <button class="btn btn-outline-dark ms-1" type="submit">
+                            <i class="fa fa-heart-o me-1"style="padding: 0" ></i>
+                        </button>
+                        </form>
                         <c:if test="${sessionScope.account !=null}">
                             <form action="logout" method="GET">
                                     <button class="btn btn-outline-primary ms-lg-2">Đăng Xuất</button>

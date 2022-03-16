@@ -65,19 +65,24 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                     </form>
-                        <c:if test="${sessionScope.account !=null}">
+                     <form class="d-flex" action="wishlist">
+                        <button class="btn btn-outline-dark ms-1" type="submit">
+                            <i class="fa fa-heart-o me-1"style="padding: 0" ></i>
+                        </button>
+                    </form>    
+                    <c:if test="${sessionScope.account !=null}">
                             <form action="logout" method="GET">
                                     <button class="btn btn-outline-primary ms-lg-2">Đăng Xuất</button>
                             </form>
-                        </c:if>
-                        <c:if test="${sessionScope.account ==null}">
+                    </c:if>
+                    <c:if test="${sessionScope.account ==null}">
                             <form action="login" method="GET">
                                     <button class="btn btn-outline-primary ms-lg-2">Đăng Nhập</button>
                             </form>
                             <form action="signup" method="GET">
                                     <button class="btn btn-outline-primary ms-lg-2">Đăng Ký</button>
                             </form>
-                        </c:if>
+                    </c:if>
                 </div>
             </div>
         </nav>
@@ -115,7 +120,13 @@
                                 <i class="bi-cart-fill me-1"></i>
                                 Thêm vào giỏ hàng
                             </button>
-                            </form>                        
+                            </form>
+                            <form action="wishlist/add" method="POST"> 
+                             <input type="hidden" name="id" value="${detail.pid}" /> 
+                             <button class="btn btn-outline-dark flex-shrink-0 ms-1" style="height: 38px" type="submit">
+                                <i class="fa fa-heart-o me-1" style="padding:0"></i>
+                            </button>
+                            </form>  
                         </div>
                     </div>
                 </div>
@@ -145,7 +156,12 @@
                                         <input type="hidden" name="id" value="${p.pid}" /> 
                                         <input id = "cart" type="submit" value="Thêm vào giỏ hàng"/> 
                                     </form>
-                                    
+                                    <form action="wishlist/add" method="POST"> 
+                                        <input type="hidden" name="id" value="${p.pid}" /> 
+                                        <button class="btn btn-outline-dark flex-shrink-0 ms-1 mt-2" style="height: 38px" type="submit">
+                                           <i class="fa fa-heart-o me-1" style="padding:0"></i>
+                                       </button>
+                                    </form>  
                                 </div>
                             </div>
                         </div>
