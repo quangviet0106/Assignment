@@ -124,7 +124,6 @@
                         <h6 class="fw-bolder">Mô tả:</h6>
                         <p class="lead">${detail.pdescription}</p>
                         <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                             <form action="addcart" method="POST"> 
                              <input type="hidden" name="id" value="${detail.pid}" /> 
                             <button class="btn btn-outline-dark flex-shrink-0" type="submit">
