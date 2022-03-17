@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
 
 /**
  *
@@ -31,9 +32,10 @@ public class DeleteWishListController extends BaseAuthenticationController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int wid = Integer.parseInt(request.getParameter("wid"));
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        Account account = (Account) request.getSession().getAttribute("account");
         WishListDBContext db = new WishListDBContext();
-        db.deleteWishList(wid);
+        db.deleteWishList(account.getUsername(),pid);
         response.sendRedirect("wishlist");
     }
 

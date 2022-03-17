@@ -90,6 +90,7 @@
                         <form class="d-flex" action="wishlist">
                         <button class="btn btn-outline-dark ms-1" type="submit">
                             <i class="fa fa-heart-o me-1"style="padding: 0" ></i>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">${requestScope.wishlist.size()}</span>
                         </button>
                         </form>
                         <c:if test="${sessionScope.account !=null}">
@@ -170,7 +171,7 @@
                                         <input type="hidden" name="id" value="<%=p.getPid()%>" /> 
                                         <input id = "cart" type="submit" value="Thêm vào giỏ hàng"/> 
                                     </form>
-                                    <form action="wishlist/add" method="POST"> 
+                                    <form action="addwishlist" method="POST"> 
                                         <input type="hidden" name="id" value="<%=p.getPid()%>" /> 
                                         <button class="btn btn-outline-dark flex-shrink-0 ms-1 mt-2" style="height: 38px" type="submit">
                                            <i class="fa fa-heart-o me-1" style="padding:0"></i>
@@ -203,7 +204,5 @@
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        
-        
     </body>
 </html>

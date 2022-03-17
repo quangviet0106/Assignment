@@ -19,13 +19,24 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/detail.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+        <link href="css/Rate.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
         <% 
             ArrayList<Product> products = (ArrayList<Product>) request.getAttribute("product");
             ArrayList<Category> categorys = (ArrayList<Category>) request.getAttribute("category");
             
         %>
-        
+         <script>
+            function submitForm2()
+            {
+                alert('Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi!');
+                document.getElementById("ratestar").submit();
+                
+            }
+             
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -121,7 +132,7 @@
                                 Thêm vào giỏ hàng
                             </button>
                             </form>
-                            <form action="wishlist/add" method="POST"> 
+                            <form action="addwishlist" method="POST"> 
                              <input type="hidden" name="id" value="${detail.pid}" /> 
                              <button class="btn btn-outline-dark flex-shrink-0 ms-1" style="height: 38px" type="submit">
                                 <i class="fa fa-heart-o me-1" style="padding:0"></i>
@@ -131,7 +142,33 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="container px-4 px-lg-5 mt-5">                 
+                <div class="rating-css">
+               <h2>Đánh giá sản phẩm</h2> 
+               <div class="rate-items">
+                   <div style="width: 130px ; height: 32px;font-size: 20px;border:1px solid;padding: 0 10px;margin-right: 8px;">5 sao(${rate5})</div>
+                   <div style="width: 130px ; height: 32px;font-size: 20px;border:1px solid;padding: 0 10px;margin-right: 8px;">4 sao(${rate4})</div>
+                   <div style="width: 130px ; height: 32px;font-size: 20px;border:1px solid;padding: 0 10px;margin-right: 8px;">3 sao(${rate3})</div>
+                   <div style="width: 130px ; height: 32px;font-size: 20px;border:1px solid;padding: 0 10px;margin-right: 8px;">2 sao(${rate2})</div>
+                   <div style="width: 130px ; height: 32px;font-size: 20px;border:1px solid;padding: 0 10px;margin-right: 8px;">1 sao(${rate1})</div>
+               </div> 
+               <form id="ratestar" action="rate" method="POST">
+                <div class="star-icon">
+                  <input type="hidden" name="pid" value="${detail.pid}"/>
+                  <input onchange="submitForm2()" type="radio" name="rating5" value="1" id="rating5">
+                  <label for="rating5" class="fa fa-star" ></label>
+                  <input onchange="submitForm2()" type="radio" name="rating4" value="1" id="rating4">
+                  <label for="rating4" class="fa fa-star"></label>
+                  <input onchange="submitForm2()"type="radio" name="rating3" value="1" id="rating3">
+                  <label for="rating3" class="fa fa-star"></label>
+                  <input onchange="submitForm2()"type="radio" name="rating2"value="1" id="rating2">
+                  <label for="rating2" class="fa fa-star"></label>
+                  <input onchange="submitForm2()"type="radio" name="rating1" value="1" id="rating1">
+                  <label for="rating1" class="fa fa-star"></label>
+                </div>
+                </form>                
+            </div>
+            </div>
             <div class="container px-4 px-lg-5 mt-5">
                 <h2>Những sản phẩm mới nhất</h2>  
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -152,11 +189,12 @@
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
+                                    
                                     <form action="addcart" method="POST"> 
                                         <input type="hidden" name="id" value="${p.pid}" /> 
                                         <input id = "cart" type="submit" value="Thêm vào giỏ hàng"/> 
                                     </form>
-                                    <form action="wishlist/add" method="POST"> 
+                                    <form action="addwishlist" method="POST"> 
                                         <input type="hidden" name="id" value="${p.pid}" /> 
                                         <button class="btn btn-outline-dark flex-shrink-0 ms-1 mt-2" style="height: 38px" type="submit">
                                            <i class="fa fa-heart-o me-1" style="padding:0"></i>

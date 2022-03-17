@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
 import model.Category;
 import model.WishList;
 
@@ -39,8 +40,10 @@ public class WishListController extends BaseAuthenticationController {
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);
+        Account account = (Account) request.getSession().getAttribute("account");
+        String username = account.getUsername();
         WishListDBContext db = new WishListDBContext();
-        ArrayList<WishList> list = db.getWishList();
+        ArrayList<WishList> list = db.getWishList(username);
         request.setAttribute("wishlist", list);
         request.getRequestDispatcher("view/WishList.jsp").forward(request, response);
     }

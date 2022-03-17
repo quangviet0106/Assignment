@@ -302,7 +302,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddToWishList</servlet-name>
-        <url-pattern>/wishlist/add</url-pattern>
+        <url-pattern>/addwishlist</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>WishListController</servlet-name>

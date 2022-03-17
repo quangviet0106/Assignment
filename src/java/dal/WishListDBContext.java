@@ -23,8 +23,8 @@ public class WishListDBContext extends DBContext{
     public void insertWishList(WishList list){
         try {
             String sql = "INSERT INTO [WishList]\n" +
-                    "           ([wid]\n" +
-                    "           ,[wname]\n" +
+                              "("+
+                    "           [wname]\n" +
                     "           ,[wimage]\n" +
                     "           ,[price]\n" +
                     "           ,[pcolor]\n" +
@@ -32,31 +32,57 @@ public class WishListDBContext extends DBContext{
                     "           ,[username_id]\n" +
                     "           ,[productid])\n" +
                     "     VALUES\n" +
-                    "           (?,?,?,?,?,?,?,?)";
+                    "           (?,?,?,?,?,?,?)";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, list.getWid());
-            stm.setString(2, list.getWname());
-            stm.setString(3, list.getWimage());
-            stm.setInt(4, list.getPrice());
-            stm.setString(5, list.getColor());
-            stm.setInt(6, list.getSize());
-            stm.setString(7, list.getAccount().getUsername());
-            stm.setInt(8, list.getProduct().getPid());
+            stm.setString(1, list.getWname());
+            stm.setString(2, list.getWimage());
+            stm.setInt(3, list.getPrice());
+            stm.setString(4, list.getColor());
+            stm.setInt(5, list.getSize());
+            stm.setString(6, list.getAccount().getUsername());
+            stm.setInt(7, list.getProduct().getPid());
             stm.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(WishListDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public ArrayList<WishList> getWishList(){
+    public WishList checkProductExistInWishlist(String username,int pid){
+        try {
+            String sql ="Select * from WishList where username_id = ? and productid = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
+            stm.setInt(2, pid);
+            ResultSet rs = stm.executeQuery();
+            if(rs.next()){
+               WishList wl = new WishList();
+                wl.setWname(rs.getString(2));
+                wl.setWimage(rs.getString(3));
+                wl.setPrice(rs.getInt(4));
+                wl.setColor(rs.getString(5));
+                wl.setSize(rs.getInt(6));
+                Account acount = new Account();
+                acount.setUsername(rs.getString(7));
+                wl.setAccount(acount);
+                Product p = new Product();
+                p.setPid(rs.getInt(8));
+                wl.setProduct(p);
+                return wl;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(WishListDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    public ArrayList<WishList> getWishList(String username){
         ArrayList<WishList> list = new ArrayList<>();
         try {
-            String sql = "Select * from WishList";
+            String sql = "Select * from WishList where username_id = ? ";
             PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1, username);
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
                 WishList wl = new WishList();
-                wl.setWid(rs.getInt(1));
                 wl.setWname(rs.getString(2));
                 wl.setWimage(rs.getString(3));
                 wl.setPrice(rs.getInt(4));
@@ -75,17 +101,17 @@ public class WishListDBContext extends DBContext{
         }
         return list;
     }
-    public void deleteWishList(int wid){
+    public void deleteWishList(String username, int pid){
         try {
-            String sql = "DELETE FROM WishList where wid = ?";
+            String sql = "DELETE FROM WishList where username_id = ? and productid = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
-            stm.setInt(1, wid);
+            stm.setString(1, username);
+            stm.setInt(2, pid);
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(WishListDBContext.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
-    
     
 }

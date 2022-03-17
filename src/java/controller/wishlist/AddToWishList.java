@@ -6,15 +6,19 @@
 package controller.wishlist;
 
 import controller.Login.BaseAuthenticationController;
+import dal.CategoryDBContext;
 import dal.ProductDBContext;
 import dal.WishListDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Account;
+import model.Category;
 import model.Product;
 import model.WishList;
 
@@ -35,11 +39,13 @@ public class AddToWishList extends BaseAuthenticationController {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int wid = Integer.parseInt(request.getParameter("id"));
+        CategoryDBContext dbCategory = new CategoryDBContext();
+        ArrayList<Category> categorys = dbCategory.getCategory();
+        request.setAttribute("category", categorys);
+        int pid = Integer.parseInt(request.getParameter("id"));
         ProductDBContext db = new ProductDBContext();
-        Product product = db.getProductByID(wid);
+        Product product = db.getProductByID(pid);
         WishList list = new WishList();
-        list.setWid(product.getPid());
         list.setWname(product.getPname());
         list.setWimage(product.getPimage());
         list.setPrice(product.getPrice());
@@ -49,8 +55,21 @@ public class AddToWishList extends BaseAuthenticationController {
         list.setAccount(account);
         list.setProduct(product);
         WishListDBContext dbWish = new WishListDBContext();
-        dbWish.insertWishList(list);
-        response.sendRedirect("../home");
+        WishList wishlist = dbWish.checkProductExistInWishlist(account.getUsername(), pid);
+        if(wishlist == null){
+            dbWish.insertWishList(list);
+            HttpSession session = request.getSession();
+            String urlHistory = (String)session.getAttribute("urlHistory");
+            if(urlHistory == null){
+            urlHistory = "home";
+            }
+        response.sendRedirect(urlHistory);
+        }
+        else{
+            request.setAttribute("warning", "Bạn đã thêm sản phẩm vừa chọn vào danh sách yêu thích rồi, vui lòng chọn sản phẩm yêu thích khác!");
+            request.getRequestDispatcher("view/WarningWishListExisted.jsp").forward(request, response);
+        }
+        
         
     }
 

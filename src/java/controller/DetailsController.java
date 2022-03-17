@@ -7,6 +7,7 @@ package controller;
 
 import dal.CategoryDBContext;
 import dal.ProductDBContext;
+import dal.RateDBContext;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -47,6 +48,17 @@ public class DetailsController extends HttpServlet {
         CategoryDBContext dbCategory = new CategoryDBContext();
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);
+        RateDBContext dbRate = new RateDBContext();
+        int sumRate1 = dbRate.sumRate1(id);
+        int sumRate2 = dbRate.sumRate2(id);
+        int sumRate3 = dbRate.sumRate3(id);
+        int sumRate4 = dbRate.sumRate4(id);
+        int sumRate5 = dbRate.sumRate5(id);
+        request.setAttribute("rate1", sumRate1);
+        request.setAttribute("rate2", sumRate2);
+        request.setAttribute("rate3", sumRate3);
+        request.setAttribute("rate4", sumRate4);
+        request.setAttribute("rate5", sumRate5);
         request.getSession().setAttribute("urlHistory", "details?pid="+id);
         request.getRequestDispatcher("view/Detail.jsp").forward(request, response);
     }

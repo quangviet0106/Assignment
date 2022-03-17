@@ -1,6 +1,6 @@
 <%-- 
-    Document   : WishList
-    Created on : Mar 16, 2022, 8:47:43 PM
+    Document   : WarningWishListExisted
+    Created on : Mar 17, 2022, 11:08:33 PM
     Author     : Admin
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -76,50 +76,10 @@
                 </div>
             </div>
         </nav>
-        <div class="cart_section mt-5">
-        <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="cart_container">
-                    <div class="cart_items" style="min-height: 1000px">
-                        <h1>WishList</h1>
-                        <c:if test="${wishlist.size() == 0}">
-                            <p class="text-center" style="min-height: 500px">Quý khách không có sản phẩm yêu thích nào !</p>
-                        </c:if>
-                        <c:if test="${wishlist.size() != 0}">
-                            <table class="table caption-top">
-                            <thead>
-                              <tr>
-                                <th scope="col">Image</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Color</th>
-                                <th scope="col">Size</th>
-                                <th scope="col">Price</th>
-                                <th scope="col"></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach items="${wishlist}" var="wl">
-                              <tr>
-                                <td><img src="${wl.wimage}" width="150" style="height:150px"/></td>
-                                <th scope="row">${wl.wname}</th>
-                                <td>${wl.color}</td>
-                                <td>${wl.size}</td>
-                                <td>${wl.price}₫</td>
-                                <td><a href="deletewishlist?pid=${wl.product.pid}" class="btn btn-outline-danger"><i class="bi bi-trash3"></i>Delete</a></td>
-                              </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-                        </c:if>
-                    </div>   
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
- 
-    <footer class="py-5 bg-dark">
+         <div class="mt-5" style="min-height: 400px">
+            <p class="text-danger text-center">${warning}</p>             
+        </div>               
+        <footer class="py-5 bg-dark">
             <div class="contact text-white">
                 <h4>Contacts:</h4>
                 <p>Phone: 0902234406</p>
@@ -131,9 +91,9 @@
                 </div>
                     
             </div>
-    </footer>
+        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->                
+        <!-- Core theme JS-->                               
     </body>
 </html>

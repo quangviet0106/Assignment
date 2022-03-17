@@ -163,7 +163,7 @@
                                         <input type="hidden" name="id" value="${p.pid}" /> 
                                         <input id = "cart" type="submit" value="Thêm vào giỏ hàng"/> 
                                     </form>
-                                    <form action="wishlist/add" method="POST"> 
+                                    <form action="addwishlist" method="POST"> 
                                         <input type="hidden" name="id" value="${p.pid}" /> 
                                         <button class="btn btn-outline-dark flex-shrink-0 ms-1 mt-2" style="height: 38px" type="submit">
                                            <i class="fa fa-heart-o me-1" style="padding:0"></i>
