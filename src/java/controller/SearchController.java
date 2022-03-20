@@ -36,6 +36,7 @@ public class SearchController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String searchName = request.getParameter("search");
         ProductDBContext dbProduct = new ProductDBContext();
         ArrayList<Product> product = dbProduct.SearchProductByName(searchName);
@@ -46,6 +47,7 @@ public class SearchController extends HttpServlet {
         request.setAttribute("countProductBySearchName", countProductBySearchName);
         request.setAttribute("category", categorys);
         request.setAttribute("searchName", searchName);
+        request.getSession().setAttribute("urlHistory", "home");
         request.getRequestDispatcher("view/SearchProductByName.jsp").forward(request, response);
         
     }

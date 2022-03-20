@@ -49,23 +49,28 @@ public class SeachProductByPriceOfCategoryController extends HttpServlet {
         ProductDBContext db = new ProductDBContext();
         if(price!=null){
            product = db.SearchProductByPriceOfCategory(price,cid);
-           count = db.countProductByPriceOfCategory(price, cid); 
+           count = db.countProductByPriceOfCategory(price, cid);
+           request.getSession().setAttribute("urlHistory", "searchproductbypriceofcategory?cid="+cid+"&&price="+price);
         }
         if(price1!=null){
            product = db.SearchProductByPriceOfCategory1(price1, cid);
            count = db.countProductByPriceOfCategory1(price1, cid);
+           request.getSession().setAttribute("urlHistory", "searchproductbypriceofcategory?cid="+cid+"&&price1="+price1);
         }
         if(price2!=null){
            product = db.SearchProductByPriceOfCategory2(price2, cid);
            count = db.countProductByPriceOfCategory2(price2, cid);
+           request.getSession().setAttribute("urlHistory", "searchproductbypriceofcategory?cid="+cid+"&&price2="+price2);
         }
         if(price3!=null){
            product = db.SearchProductByPriceOfCategory3(price3, cid);
-           count = db.countProductByPriceOfCategory3(price3, cid); 
+           count = db.countProductByPriceOfCategory3(price3, cid);
+           request.getSession().setAttribute("urlHistory", "searchproductbypriceofcategory?cid="+cid+"&&price3="+price3);
         }
         
         request.setAttribute("product", product);
         request.setAttribute("counts", count);
+        
         request.getRequestDispatcher("view/SearchProductByCategory.jsp").forward(request, response);
         
     }

@@ -48,6 +48,7 @@ public class SearchColorProductByCategoryController extends HttpServlet {
         int count = db.countProductByColorOfCategory(color, cid);
         request.setAttribute("product", product);
         request.setAttribute("counts", count);
+        request.getSession().setAttribute("urlHistory", "category?cid="+cid);
         request.getRequestDispatcher("view/SearchProductByCategory.jsp").forward(request, response);
     }
 

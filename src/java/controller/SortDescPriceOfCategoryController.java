@@ -45,6 +45,7 @@ public class SortDescPriceOfCategoryController extends HttpServlet {
          int countProductByCategory = db.countProductByCategory(cid);
         request.setAttribute("counts", countProductByCategory);
         request.setAttribute("product", product);
+        request.getSession().setAttribute("urlHistory", "sortdescpriceofcategory?cid="+cid);
         request.getRequestDispatcher("view/SearchProductByCategory.jsp").forward(request, response);
     }
 

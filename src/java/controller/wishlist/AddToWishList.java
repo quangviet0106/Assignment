@@ -69,8 +69,6 @@ public class AddToWishList extends BaseAuthenticationController {
             request.setAttribute("warning", "Bạn đã thêm sản phẩm vừa chọn vào danh sách yêu thích rồi, vui lòng chọn sản phẩm yêu thích khác!");
             request.getRequestDispatcher("view/WarningWishListExisted.jsp").forward(request, response);
         }
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

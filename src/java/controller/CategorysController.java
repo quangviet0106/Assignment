@@ -48,6 +48,7 @@ public class CategorysController extends HttpServlet {
         request.setAttribute("counts", countProductByCategory);
         request.setAttribute("product", products);
         request.setAttribute("tag", cid);
+        request.getSession().setAttribute("urlHistory", "category?cid="+cid);
         request.getRequestDispatcher("view/SearchProductByCategory.jsp").forward(request, response);
     }
 
