@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>The Socks</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
         <link href="css/styles.css" rel="stylesheet" />
         <style>
@@ -85,9 +86,10 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                         </form>
-                         <form class="d-flex" action="wishlist">
-                        <button class="btn btn-outline-dark ms-1" type="submit">
+                        <form class="d-flex" action="wishlist">
+                        <button class="btn btn-outline-dark ms-1" style="padding:  0px" type="submit">
                             <i class="fa fa-heart-o me-1"style="padding: 0" ></i>
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">${requestScope.wishlist.size()}</span>
                         </button>
                         </form>
                         <c:if test="${sessionScope.account !=null}">

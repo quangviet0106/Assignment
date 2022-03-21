@@ -29,6 +29,10 @@
             {
                 document.getElementById("searchForm").submit();
             }
+            function submitForm1()
+            {
+                document.getElementById("searchColor").submit();
+            }
         </script>
     </head>
     <body>
