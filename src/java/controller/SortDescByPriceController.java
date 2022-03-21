@@ -52,9 +52,7 @@ public class SortDescByPriceController extends HttpServlet {
         request.setAttribute("totalpage", totalpage);
         request.setAttribute("pageindex", pageindex);
         request.setAttribute("pagesize", pagesize);
-        request.setAttribute("product", product);
-        request.getSession().setAttribute("urlHistory", "sortdesc");
-         
+        request.setAttribute("product", product);         
         request.getRequestDispatcher("view/SortDescByPrice.jsp").forward(request, response);
     }
 

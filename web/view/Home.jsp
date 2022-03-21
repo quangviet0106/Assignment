@@ -84,7 +84,7 @@
                         <button class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
+                            <span id ="cart_number"class="badge bg-dark text-white ms-1 rounded-pill">${sessionScope.carts.details.size()}</span>
                         </button>
                         </form>
                         <form class="d-flex" action="wishlist">
@@ -204,5 +204,6 @@
             </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
     </body>
 </html>

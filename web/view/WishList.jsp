@@ -102,7 +102,7 @@
                                 <c:forEach items="${wishlist}" var="wl">
                               <tr>
                                 <td><img src="${wl.wimage}" width="150" style="height:150px"/></td>
-                                <th scope="row">${wl.wname}</th>
+                                <th scope="row"><a href="details?pid=${wl.product.pid}" style="color: black">${wl.wname}</a></th>
                                 <td>${wl.color}</td>
                                 <td>${wl.size}</td>
                                 <td>${wl.price}₫</td>

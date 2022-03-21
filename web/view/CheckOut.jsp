@@ -134,19 +134,19 @@
                     <div class="col-md-3" style="border: 1px solid #ccc ; border-radius: 5px;padding: 1rem;">
                         <form action="checkout" method="POST">
                         <div class="mb-3">
-                          <label for="name" class="form-label">Name</label>
+                          <label for="name" class="form-label">Họ Tên</label>
                           <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                          <label for="phone" class="form-label">Phone</label>
+                          <label for="phone" class="form-label">Số điện thoại</label>
                           <input type="text" class="form-control" id="phone" name="phone" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
-                          <label for="address" class="form-label">Address</label>
+                          <label for="address" class="form-label">Địa chỉ</label>
                           <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
-                            <label for="note">Note</label>
+                            <label for="note">Ghi chú</label>
                             <textarea class="form-control" id="note" name="note" rows="3"></textarea>
                       </div>
                         <button type="submit" class="btn btn-primary w-100 mt-5">Đặt Hàng</button>

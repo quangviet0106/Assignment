@@ -64,11 +64,7 @@ public class AddToCartController extends BaseAuthenticationController {
             cart.getDetails().add(detail);
         }
         session.setAttribute("carts", cart);
-        String urlHistory = (String)session.getAttribute("urlHistory");
-        if(urlHistory == null){
-            urlHistory = "home";
-        }
-        response.sendRedirect(urlHistory);
+        response.sendRedirect("listcart");
         
         
         

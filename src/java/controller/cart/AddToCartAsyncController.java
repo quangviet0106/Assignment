@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.cart;
 
-import dal.CategoryDBContext;
 import dal.ProductDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Category;
+import javax.servlet.http.HttpSession;
+import model.Cart;
+import model.CartDetail;
 import model.Product;
 
 /**
  *
- * @author DELL
+ * @author Admin
  */
-public class SearchController extends HttpServlet {
+public class AddToCartAsyncController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,20 +35,32 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        String searchName = request.getParameter("search");
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("carts");
+        int id = Integer.parseInt(request.getParameter("id"));
         ProductDBContext dbProduct = new ProductDBContext();
-        ArrayList<Product> product = dbProduct.SearchProductByName(searchName);
-        request.setAttribute("product", product);
-        CategoryDBContext dbCategory = new CategoryDBContext();
-        ArrayList<Category> categorys = dbCategory.getCategory();
-        int countProductBySearchName = dbProduct.countProductBySearchName(searchName);
-        request.setAttribute("countProductBySearchName", countProductBySearchName);
-        request.setAttribute("category", categorys);
-        request.setAttribute("searchName", searchName);
-        request.getRequestDispatcher("view/SearchProductByName.jsp").forward(request, response);
+        Product product = dbProduct.getProductByID(id);
         
+        if(cart == null)
+            cart = new Cart();
+        boolean isExist = false;
+        for (CartDetail detail : cart.getDetails()) {
+            if(detail.getProduct().getPid() == product.getPid()){
+                isExist = true;
+                detail.setQuantity(detail.getQuantity()+1);
+                break;
+            }
+        }
+        if(!isExist){
+            CartDetail detail = new CartDetail();
+            detail.setProduct(product);
+            detail.setOrder(cart);
+            detail.setQuantity(1);
+            detail.setPrice(product.getPrice());
+            cart.getDetails().add(detail);
+        }
+        session.setAttribute("carts", cart);
+        response.getWriter().println(cart.getDetails().size());
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

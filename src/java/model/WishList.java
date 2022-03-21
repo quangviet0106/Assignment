@@ -83,10 +83,6 @@ public class WishList {
         this.product = product;
     }
 
-    @Override
-    public String toString() {
-        return "WishList{" + "wid=" + wid + ", wname=" + wname + ", wimage=" + wimage + ", price=" + price + ", color=" + color + ", size=" + size + ", account=" + account.getUsername() + ", product=" + product.getPid() + '}';
-    }
     
     
 }

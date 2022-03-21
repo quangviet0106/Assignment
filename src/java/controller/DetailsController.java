@@ -59,7 +59,6 @@ public class DetailsController extends HttpServlet {
         request.setAttribute("rate3", sumRate3);
         request.setAttribute("rate4", sumRate4);
         request.setAttribute("rate5", sumRate5);
-        request.getSession().setAttribute("urlHistory", "details?pid="+id);
         request.getRequestDispatcher("view/Detail.jsp").forward(request, response);
     }
 

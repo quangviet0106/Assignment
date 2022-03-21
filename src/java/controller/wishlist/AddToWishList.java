@@ -57,13 +57,8 @@ public class AddToWishList extends BaseAuthenticationController {
         WishListDBContext dbWish = new WishListDBContext();
         WishList wishlist = dbWish.checkProductExistInWishlist(account.getUsername(), pid);
         if(wishlist == null){
-            dbWish.insertWishList(list);
-            HttpSession session = request.getSession();
-            String urlHistory = (String)session.getAttribute("urlHistory");
-            if(urlHistory == null){
-            urlHistory = "home";
-            }
-        response.sendRedirect(urlHistory);
+        dbWish.insertWishList(list);
+        response.sendRedirect("wishlist");
         }
         else{
             request.setAttribute("warning", "Bạn đã thêm sản phẩm vừa chọn vào danh sách yêu thích rồi, vui lòng chọn sản phẩm yêu thích khác!");

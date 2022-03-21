@@ -53,7 +53,6 @@ public class SortAscByPriceController extends HttpServlet {
         request.setAttribute("pageindex", pageindex);
         request.setAttribute("pagesize", pagesize);
         request.setAttribute("product", product);
-        request.getSession().setAttribute("urlHistory", "sortasc");
         request.getRequestDispatcher("view/SortAscByPrice.jsp").forward(request, response);
     }
 

@@ -56,7 +56,6 @@ public class HomeController extends HttpServlet {
         request.setAttribute("totalpage", totalpage);
         request.setAttribute("pageindex", pageindex);
         request.setAttribute("pagesize", pagesize);
-        request.getSession().setAttribute("urlHistory", "home");
         request.getRequestDispatcher("view/Home.jsp").forward(request, response);
         
     }

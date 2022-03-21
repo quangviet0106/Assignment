@@ -48,22 +48,18 @@ public class SearchProductByPriceController extends HttpServlet {
         if(price1 != null){
             product = db.SearchProductByPrice(price1);
             count = db.countProductByPrice(price1);
-            request.getSession().setAttribute("urlHistory", "searchprice?price1="+price1);
         }
         if(price2 != null){
             product = db.SearchProductByPrice1(price2);
              count = db.countProductByPrice1(price2);
-             request.getSession().setAttribute("urlHistory", "searchprice?price2="+price2);
         }
         if(price3 != null){
             product = db.SearchProductByPrice2(price3);
              count = db.countProductByPrice2(price3);
-             request.getSession().setAttribute("urlHistory", "searchprice?price3="+price3);
         }
         if(price4 != null){
             product = db.SearchProductByPrice3(price4);
             count = db.countProductByPrice3(price4);
-            request.getSession().setAttribute("urlHistory", "searchprice?price4="+price4);
         }
         request.setAttribute("count", count);
         request.setAttribute("price1", product);
