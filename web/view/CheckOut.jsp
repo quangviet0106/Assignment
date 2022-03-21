@@ -85,7 +85,7 @@
         </nav>
         <section class="py-5"> 
             <div class="container" style="min-height: 1000px">
-                <h1>CheckOut</h1>
+                <h1>Thủ tục thanh toán</h1>
                 <div class="row">
                     <div class="col-md-9" style="border: 1px solid #ccc ; border-radius: 5px;padding: 1rem;">
                         <div class="cart_items">
