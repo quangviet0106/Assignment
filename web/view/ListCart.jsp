@@ -95,6 +95,7 @@
                     <p style="min-height: 400px" class="text-center mt-5">Quý khách chưa thêm sản phẩm nào vào giỏ hàng !</p>
                     <%}else{%>
                     <div class="cart_items">
+                        <h2>Giỏ hàng</h2>
                         <table class="table caption-top">
                             <thead>
                               <tr>

@@ -45,6 +45,8 @@ public class RateController extends BaseAuthenticationController {
         ArrayList<Category> categorys = dbCategory.getCategory();
         request.setAttribute("category", categorys);
         ProductDBContext db = new ProductDBContext();
+         ArrayList<Product> p = db.getNewProducts();
+        request.setAttribute("newproducts", p);
         Product product = db.getProductByID(pid);
         request.setAttribute("detail",product);
         String raw_rate1 = request.getParameter("rating1");
